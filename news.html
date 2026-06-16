@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tin Tức & Blog – HALOVN</title>
+  <meta name="description" content="Tin tức sức khỏe, làm đẹp, xu hướng thị trường thực phẩm chức năng và cập nhật mới nhất từ HALOVN.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .news-layout { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    .news-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    .news-card-large { display: grid; grid-template-columns: 1fr; border: 1.5px solid var(--grey-mid); border-radius: var(--radius); overflow: hidden; transition: all var(--transition); }
+    .news-card-large:hover { border-color: var(--blue); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,174,239,0.10); }
+    .news-img { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 72px; }
+    .news-img.health { background: linear-gradient(135deg, #e8f7ff, #c8ecfc); }
+    .news-img.beauty { background: linear-gradient(135deg, #ffe8f7, #f0c8e8); }
+    .news-img.biz { background: linear-gradient(135deg, #e8fff0, #c8f0d8); }
+    .news-img.nutrition { background: linear-gradient(135deg, #fff8e8, #f0e4c8); }
+    .news-body { padding: 20px; }
+    .news-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .news-category { font-size: 11px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; background: rgba(0,174,239,0.1); padding: 3px 8px; border-radius: 4px; }
+    .news-date { font-size: 12px; color: var(--muted); }
+    .news-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+    .news-excerpt { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .news-read-more { font-size: 13px; font-weight: 700; color: var(--blue); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: gap var(--transition); }
+    .news-read-more:hover { gap: 8px; }
+    .sidebar-news { background: var(--white); border: 1.5px solid var(--grey-mid); border-radius: var(--radius); padding: 24px; height: fit-content; }
+    .sidebar-news h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--blue); }
+    .sidebar-post { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--grey-mid); }
+    .sidebar-post:last-child { border: none; }
+    .sidebar-thumb { width: 56px; height: 56px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+    .sidebar-post-title { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px; line-height: 1.3; }
+    .sidebar-post-date { font-size: 11px; color: var(--muted); }
+    .tags-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .tag-chip { padding: 5px 12px; border: 1.5px solid var(--grey-mid); border-radius: 20px; font-size: 12px; color: var(--muted); text-decoration: none; transition: all var(--transition); }
+    .tag-chip:hover { border-color: var(--blue); color: var(--blue); }
+    .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 40px; }
+    .page-btn { width: 36px; height: 36px; border: 1.5px solid var(--grey-mid); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: all var(--transition); }
+    .page-btn.active, .page-btn:hover { border-color: var(--blue); color: var(--blue); background: rgba(0,174,239,0.05); }
+    @media (min-width: 768px) {
+      .news-layout { grid-template-columns: 1fr 280px; }
+      .news-card-large { grid-template-columns: 240px 1fr; }
+      .news-img { aspect-ratio: unset; min-height: 100%; }
+    }
+    @media (min-width: 1024px) { .news-layout { grid-template-columns: 1fr 300px; } }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container"><div class="top-bar-inner">
+      <div class="top-bar-contact">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633">0865 565 633</a></span>
+        <span>Thứ 2 – Thứ 7 | 8h – 18h30</span>
+      </div>
+      <div class="lang-toggle"><button class="active" data-lang="vi">VI</button><button data-lang="en">EN</button></div>
+    </div></div>
+  </div>
+  <header>
+    <div class="container"><div class="header-main">
+      <a href="index.html" class="logo">
+        <img src="Logo.png" alt="HALOVN" height="48" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column"><span class="logo-name">Halo<span class="vn">vn</span></span><span class="logo-tagline">Healthy and Beauty</span></div>
+      </a>
+      <a href="tel:0865565633" class="mobile-hotline" style="align-items:center;gap:6px;font-weight:700;color:var(--blue);font-size:14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>0865 565 633</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div></div>
+    <nav class="nav"><div class="container"><div class="nav-inner nav-desktop">
+      <a href="index.html">Trang chủ</a><a href="about.html">Giới thiệu</a>
+      <a href="products.html">Sản phẩm</a><a href="wholesale.html">Chính sách sỉ</a>
+      <a href="news.html" class="active">Tin tức</a><a href="contact.html">Liên hệ</a>
+      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
+    </div></div></nav>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html">Trang chủ</a><a href="about.html">Giới thiệu</a>
+      <a href="products.html">Sản phẩm</a><a href="wholesale.html">Chính sách sỉ</a>
+      <a href="news.html" class="active">Tin tức</a><a href="contact.html">Liên hệ</a>
+      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="page-hero-badge">Blog & Tin Tức</span>
+        <h1>Kiến Thức <span>Sức Khỏe & Làm Đẹp</span></h1>
+        <p>Cập nhật xu hướng, nghiên cứu khoa học và tin tức ngành từ đội ngũ HALOVN</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="news-layout">
+          <!-- MAIN ARTICLES -->
+          <div>
+            <div class="news-grid">
+              <article class="news-card-large reveal">
+                <div class="news-img health">🧬</div>
+                <div class="news-body">
+                  <div class="news-meta"><span class="news-category">Sức Khỏe</span><span class="news-date">14/06/2025</span></div>
+                  <h2 class="news-title">Omega-3 và Sức Khỏe Tim Mạch: Những Điều Bạn Cần Biết Năm 2025</h2>
+                  <p class="news-excerpt">Nghiên cứu mới nhất từ Harvard Medical School xác nhận vai trò quan trọng của Omega-3 trong việc giảm nguy cơ bệnh tim mạch. Liều lượng khuyến nghị và cách chọn sản phẩm chất lượng...</p>
+                  <a href="#" class="news-read-more">Đọc thêm →</a>
+                </div>
+              </article>
+              <article class="news-card-large reveal reveal-delay-1">
+                <div class="news-img beauty">💄</div>
+                <div class="news-body">
+                  <div class="news-meta"><span class="news-category" style="color:#D946EF;background:rgba(217,70,239,0.1)">Làm Đẹp</span><span class="news-date">10/06/2025</span></div>
+                  <h2 class="news-title">Collagen Đường Uống: Loại Nào Thực Sự Hiệu Quả?</h2>
+                  <p class="news-excerpt">Thị trường collagen ngày càng phong phú với hàng trăm thương hiệu khác nhau. Bài viết phân tích chuyên sâu về các dạng collagen, liều lượng chuẩn và những sản phẩm được chứng minh lâm sàng...</p>
+                  <a href="#" class="news-read-more">Đọc thêm →</a>
+                </div>
+              </article>
+              <article class="news-card-large reveal reveal-delay-2">
+                <div class="news-img biz">📈</div>
+                <div class="news-body">
+                  <div class="news-meta"><span class="news-category" style="color:var(--green);background:rgba(57,181,74,0.1)">Thị Trường</span><span class="news-date">05/06/2025</span></div>
+                  <h2 class="news-title">Thị Trường Thực Phẩm Chức Năng Việt Nam 2025: Cơ Hội Cho Đại Lý</h2>
+                  <p class="news-excerpt">Báo cáo từ Mordor Intelligence dự báo thị trường TPCN Việt Nam đạt 1,2 tỷ USD vào năm 2027. Phân tích chi tiết các danh mục sản phẩm tăng trưởng mạnh và cơ hội cho nhà phân phối...</p>
+                  <a href="#" class="news-read-more">Đọc thêm →</a>
+                </div>
+              </article>
+              <article class="news-card-large reveal reveal-delay-3">
+                <div class="news-img nutrition">🥗</div>
+                <div class="news-body">
+                  <div class="news-meta"><span class="news-category" style="color:#F59E0B;background:rgba(245,158,11,0.1)">Dinh Dưỡng</span><span class="news-date">01/06/2025</span></div>
+                  <h2 class="news-title">Vitamin D3: Vì Sao 80% Người Việt Bị Thiếu Và Cách Bổ Sung Đúng</h2>
+                  <p class="news-excerpt">Khảo sát năm 2024 cho thấy 4/5 người trưởng thành tại Việt Nam có mức Vitamin D dưới ngưỡng tối ưu. Những hệ quả sức khỏe và hướng dẫn bổ sung an toàn, hiệu quả...</p>
+                  <a href="#" class="news-read-more">Đọc thêm →</a>
+                </div>
+              </article>
+            </div>
+
+            <div class="pagination">
+              <a href="#" class="page-btn active">1</a>
+              <a href="#" class="page-btn">2</a>
+              <a href="#" class="page-btn">3</a>
+              <a href="#" class="page-btn">›</a>
+            </div>
+          </div>
+
+          <!-- SIDEBAR -->
+          <aside>
+            <div class="sidebar-news reveal reveal-delay-1">
+              <h3>Bài Viết Mới</h3>
+              <div class="sidebar-post">
+                <div class="sidebar-thumb health">🧬</div>
+                <div><div class="sidebar-post-title">Omega-3 và sức khỏe tim mạch năm 2025</div><div class="sidebar-post-date">14/06/2025</div></div>
+              </div>
+              <div class="sidebar-post">
+                <div class="sidebar-thumb beauty">💄</div>
+                <div><div class="sidebar-post-title">Collagen đường uống nào thực sự hiệu quả?</div><div class="sidebar-post-date">10/06/2025</div></div>
+              </div>
+              <div class="sidebar-post">
+                <div class="sidebar-thumb biz">📈</div>
+                <div><div class="sidebar-post-title">Thị trường TPCN Việt Nam 2025</div><div class="sidebar-post-date">05/06/2025</div></div>
+              </div>
+              <div class="sidebar-post">
+                <div class="sidebar-thumb nutrition">🥗</div>
+                <div><div class="sidebar-post-title">Vitamin D3: 80% người Việt bị thiếu</div><div class="sidebar-post-date">01/06/2025</div></div>
+              </div>
+            </div>
+
+            <div class="sidebar-news reveal reveal-delay-2" style="margin-top:20px">
+              <h3>Chủ Đề</h3>
+              <div class="tags-cloud">
+                <a href="#" class="tag-chip">Omega-3</a><a href="#" class="tag-chip">Vitamin D</a>
+                <a href="#" class="tag-chip">Collagen</a><a href="#" class="tag-chip">Chính sách sỉ</a>
+                <a href="#" class="tag-chip">Blackmores</a><a href="#" class="tag-chip">Làm đẹp</a>
+                <a href="#" class="tag-chip">Mẹ & Bé</a><a href="#" class="tag-chip">Gym</a>
+                <a href="#" class="tag-chip">Thị trường</a><a href="#" class="tag-chip">Probiotic</a>
+              </div>
+            </div>
+
+            <div class="reveal reveal-delay-3" style="background:linear-gradient(135deg,var(--navy),var(--navy-light));border-radius:var(--radius);padding:24px;text-align:center;margin-top:20px">
+              <p style="color:white;font-size:15px;font-weight:700;margin-bottom:6px">Đăng Ký Nhận Tin</p>
+              <p style="color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:16px">Cập nhật xu hướng sức khỏe & cơ hội kinh doanh</p>
+              <form onsubmit="handleNewsletter(event)" style="display:flex;flex-direction:column;gap:8px">
+                <input type="email" placeholder="Email của bạn" style="padding:10px 14px;border:none;border-radius:8px;font-size:13px;outline:none" required>
+                <button type="submit" class="btn btn-primary" style="justify-content:center;font-size:13px;padding:10px">Đăng Ký</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main"><div class="container"><div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Halo<span class="vn">vn</span></div>
+        <div class="footer-tagline">Healthy and Beauty</div>
+        <p>Nhà phân phối chính hãng thực phẩm chức năng và sản phẩm sức khỏe & làm đẹp hàng đầu tại Việt Nam.</p>
+        <div class="footer-social"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">▶</a><a href="#" class="social-btn">Z</a></div>
+      </div>
+      <div class="footer-col"><h4>Chủ Đề</h4><ul>
+        <li><a href="#">Sức Khỏe</a></li><li><a href="#">Làm Đẹp</a></li>
+        <li><a href="#">Dinh Dưỡng</a></li><li><a href="#">Thị Trường</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Về HALOVN</h4><ul>
+        <li><a href="about.html">Giới thiệu</a></li><li><a href="wholesale.html">Chính sách sỉ</a></li>
+        <li><a href="for-brands.html">For Brands</a></li><li><a href="contact.html">Liên hệ</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Liên hệ</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>282 Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633">0865 565 633</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a></div>
+      </div>
+    </div></div></div>
+    <div class="footer-bottom"><div class="container">Bản quyền thuộc về Công ty TNHH HALOVN ©2025</div></div>
+  </footer>
+  <button class="scroll-top" id="scrollTop" aria-label="Lên đầu"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <script src="script.js"></script>
+</body>
+</html>

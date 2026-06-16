@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chính Sách Sỉ – Đăng Ký Đại Lý HALOVN</title>
+  <meta name="description" content="Trở thành đại lý HALOVN – nhận giá sỉ cạnh tranh, hỗ trợ bán hàng chuyên nghiệp, hàng chính hãng đảm bảo. Đăng ký ngay!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wholesale-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    .tier-cards { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+    .tier-card { border: 2px solid var(--grey-mid); border-radius: var(--radius); padding: 24px; position: relative; transition: all var(--transition); }
+    .tier-card.featured { border-color: var(--blue); }
+    .tier-badge { position: absolute; top: -12px; left: 24px; background: var(--blue); color: white; font-size: 11px; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; }
+    .tier-name { font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 4px; }
+    .tier-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .tier-features { list-style: none; }
+    .tier-features li { font-size: 14px; color: var(--text); padding: 6px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--grey-mid); }
+    .tier-features li:last-child { border: none; }
+    .tier-features li::before { content: '✓'; color: var(--green); font-weight: 800; flex-shrink: 0; }
+    .process-steps { display: grid; grid-template-columns: 1fr; gap: 0; }
+    .process-step { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--grey-mid); }
+    .process-step:last-child { border: none; }
+    .step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--blue); color: white; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-content h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .step-content p { font-size: 14px; color: var(--muted); }
+    .reg-form { background: var(--white); border: 1.5px solid var(--grey-mid); border-radius: var(--radius); padding: 32px; }
+    .reg-form h3 { font-size: 22px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .reg-form p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 700; color: var(--navy); }
+    .form-group input, .form-group select, .form-group textarea { border: 1.5px solid var(--grey-mid); border-radius: 8px; padding: 11px 14px; font-size: 14px; font-family: inherit; color: var(--text); outline: none; transition: border-color var(--transition); background: var(--white); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .policy-box { background: var(--grey-light); border-radius: var(--radius); padding: 24px; }
+    .policy-box h4 { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .policy-box ul { list-style: none; }
+    .policy-box ul li { font-size: 14px; color: var(--text); padding: 5px 0; padding-left: 20px; position: relative; }
+    .policy-box ul li::before { content: '•'; color: var(--blue); font-weight: 800; position: absolute; left: 0; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .benefit-item { text-align: center; padding: 24px 16px; background: var(--grey-light); border-radius: var(--radius); }
+    .benefit-icon { font-size: 36px; margin-bottom: 10px; }
+    .benefit-item h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .benefit-item p { font-size: 12px; color: var(--muted); }
+    @media (min-width: 768px) {
+      .wholesale-grid { grid-template-columns: 1fr 380px; }
+      .tier-cards { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr 1fr; }
+      .benefits-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container"><div class="top-bar-inner">
+      <div class="top-bar-contact">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633">0865 565 633</a></span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a></span>
+      </div>
+      <div class="lang-toggle"><button class="active" data-lang="vi">VI</button><button data-lang="en">EN</button></div>
+    </div></div>
+  </div>
+  <header>
+    <div class="container"><div class="header-main">
+      <a href="index.html" class="logo">
+        <img src="Logo.png" alt="HALOVN" height="48" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column"><span class="logo-name">Halo<span class="vn">vn</span></span><span class="logo-tagline">Healthy and Beauty</span></div>
+      </a>
+      <a href="tel:0865565633" class="mobile-hotline" style="align-items:center;gap:6px;font-weight:700;color:var(--blue);font-size:14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>0865 565 633</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div></div>
+    <nav class="nav"><div class="container"><div class="nav-inner nav-desktop">
+      <a href="index.html">Trang chủ</a><a href="about.html">Giới thiệu</a>
+      <a href="products.html">Sản phẩm</a><a href="wholesale.html" class="active">Chính sách sỉ</a>
+      <a href="news.html">Tin tức</a><a href="contact.html">Liên hệ</a>
+      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
+    </div></div></nav>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html">Trang chủ</a><a href="about.html">Giới thiệu</a>
+      <a href="products.html">Sản phẩm</a><a href="wholesale.html" class="active">Chính sách sỉ</a>
+      <a href="news.html">Tin tức</a><a href="contact.html">Liên hệ</a>
+      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="page-hero-badge">Chính Sách Sỉ</span>
+        <h1>Trở Thành <span>Đại Lý HALOVN</span></h1>
+        <p>Giá sỉ cạnh tranh – Hàng chính hãng – Hỗ trợ bán hàng chuyên nghiệp</p>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title reveal">Quyền Lợi <span>Đại Lý</span></h2>
+          <p class="section-sub reveal reveal-delay-1">Những lý do hàng trăm nhà thuốc, spa, gym chọn HALOVN làm nhà cung cấp</p>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-item reveal reveal-delay-1"><div class="benefit-icon">💰</div><h4>Giá Sỉ Tốt Nhất</h4><p>Chính sách giá linh hoạt theo số lượng</p></div>
+          <div class="benefit-item reveal reveal-delay-2"><div class="benefit-icon">✅</div><h4>Hàng Chính Hãng</h4><p>Giấy ủy quyền chính thức từ thương hiệu</p></div>
+          <div class="benefit-item reveal reveal-delay-3"><div class="benefit-icon">🚀</div><h4>Giao Hàng Nhanh</h4><p>Toàn quốc trong 2-5 ngày làm việc</p></div>
+          <div class="benefit-item reveal reveal-delay-4"><div class="benefit-icon">📞</div><h4>Hỗ Trợ 24/7</h4><p>Tư vấn sản phẩm và hỗ trợ bán hàng</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIER + FORM -->
+    <section class="section" style="background:var(--grey-light)">
+      <div class="container">
+        <div class="wholesale-grid">
+          <!-- LEFT: TIER + PROCESS -->
+          <div>
+            <h2 class="section-title reveal">Cấp Độ <span>Đại Lý</span></h2>
+            <p class="reveal reveal-delay-1" style="color:var(--muted);margin-bottom:24px">Chính sách phân cấp linh hoạt, phù hợp mọi quy mô kinh doanh</p>
+            <div class="tier-cards">
+              <div class="tier-card reveal reveal-delay-1">
+                <div class="tier-name">Đại Lý Cấp 1</div>
+                <div class="tier-sub">Đơn tối thiểu từ 5.000.000đ/tháng</div>
+                <ul class="tier-features">
+                  <li>Chiết khấu 15–20%</li>
+                  <li>Freeship đơn từ 2.000.000đ</li>
+                  <li>Hỗ trợ tư vấn sản phẩm</li>
+                  <li>Đổi trả trong 30 ngày</li>
+                </ul>
+              </div>
+              <div class="tier-card featured reveal reveal-delay-2">
+                <div class="tier-badge">Phổ biến nhất</div>
+                <div class="tier-name">Đại Lý Cấp 2</div>
+                <div class="tier-sub">Đơn tối thiểu từ 20.000.000đ/tháng</div>
+                <ul class="tier-features">
+                  <li>Chiết khấu 20–28%</li>
+                  <li>Freeship toàn bộ đơn hàng</li>
+                  <li>Hỗ trợ marketing & content</li>
+                  <li>Thanh toán linh hoạt</li>
+                  <li>Ưu tiên hàng mới về</li>
+                </ul>
+              </div>
+            </div>
+
+            <h2 class="section-title reveal" style="margin-top:40px">Quy Trình <span>Đặt Hàng Sỉ</span></h2>
+            <div class="process-steps">
+              <div class="process-step reveal reveal-delay-1">
+                <div class="step-num">1</div>
+                <div class="step-content"><h4>Đăng Ký & Tư Vấn</h4><p>Điền form đăng ký hoặc liên hệ hotline. Nhân viên sẽ liên hệ trong 24h để tư vấn chính sách phù hợp.</p></div>
+              </div>
+              <div class="process-step reveal reveal-delay-2">
+                <div class="step-num">2</div>
+                <div class="step-content"><h4>Nhận Bảng Giá Sỉ</h4><p>Nhận catalogue và bảng giá sỉ đầy đủ với hơn 500 sản phẩm theo cấp đại lý của bạn.</p></div>
+              </div>
+              <div class="process-step reveal reveal-delay-3">
+                <div class="step-num">3</div>
+                <div class="step-content"><h4>Đặt Hàng & Thanh Toán</h4><p>Đặt hàng qua Zalo/Email/Hotline. Thanh toán chuyển khoản, nhận hóa đơn VAT đầy đủ.</p></div>
+              </div>
+              <div class="process-step reveal reveal-delay-4">
+                <div class="step-num">4</div>
+                <div class="step-content"><h4>Giao Hàng & Hỗ Trợ</h4><p>Giao hàng toàn quốc 2-5 ngày. Đội ngũ hỗ trợ bán hàng và tư vấn sản phẩm liên tục.</p></div>
+              </div>
+            </div>
+
+            <div class="policy-box reveal" style="margin-top:32px">
+              <h4>📦 Chính Sách Đổi Trả Cho Đại Lý</h4>
+              <ul>
+                <li>Đổi trả hàng lỗi do nhà sản xuất trong 30 ngày</li>
+                <li>Hỗ trợ đổi mã sản phẩm trong 7 ngày kể từ ngày nhận</li>
+                <li>Hoàn tiền 100% nếu hàng không đúng mô tả</li>
+                <li>Không áp dụng đổi trả hàng đã qua sử dụng</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- RIGHT: FORM -->
+          <div>
+            <div class="reg-form reveal">
+              <h3>Đăng Ký Làm Đại Lý</h3>
+              <p>Điền thông tin bên dưới — đội ngũ sẽ liên hệ trong vòng 24 giờ</p>
+              <form onsubmit="handleContact(event)">
+                <div class="form-row" style="margin-bottom:16px">
+                  <div class="form-group"><label>Họ và tên *</label><input type="text" placeholder="Nguyễn Văn A" required></div>
+                  <div class="form-group"><label>Số điện thoại *</label><input type="tel" placeholder="0900 000 000" required></div>
+                </div>
+                <div class="form-group" style="margin-bottom:16px"><label>Email *</label><input type="email" placeholder="email@company.com" required></div>
+                <div class="form-group" style="margin-bottom:16px"><label>Tên cửa hàng / Doanh nghiệp</label><input type="text" placeholder="Nhà thuốc / Spa / Gym..."></div>
+                <div class="form-group" style="margin-bottom:16px"><label>Loại hình kinh doanh *</label>
+                  <select required>
+                    <option value="">-- Chọn loại hình --</option>
+                    <option>Nhà thuốc / Dược phẩm</option>
+                    <option>Spa / Thẩm mỹ viện</option>
+                    <option>Phòng gym / Thể hình</option>
+                    <option>Reseller online (Shopee, TikTok…)</option>
+                    <option>Phòng khám / Bệnh viện</option>
+                    <option>Khác</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom:16px"><label>Tỉnh / Thành phố *</label>
+                  <select required>
+                    <option value="">-- Chọn tỉnh thành --</option>
+                    <option>Hà Nội</option><option>TP. Hồ Chí Minh</option>
+                    <option>Đà Nẵng</option><option>Hải Phòng</option><option>Cần Thơ</option>
+                    <option>Khác</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom:16px"><label>Doanh số dự kiến mỗi tháng</label>
+                  <select>
+                    <option>Dưới 5 triệu</option><option>5 – 20 triệu</option>
+                    <option>20 – 50 triệu</option><option>Trên 50 triệu</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin-bottom:24px"><label>Ghi chú thêm</label><textarea placeholder="Sản phẩm quan tâm, yêu cầu đặc biệt..."></textarea></div>
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px">Gửi Đăng Ký Làm Đại Lý</button>
+              </form>
+              <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:12px">Hoặc liên hệ trực tiếp: <strong><a href="tel:0865565633" style="color:var(--blue)">0865 565 633</a></strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main"><div class="container"><div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Halo<span class="vn">vn</span></div>
+        <div class="footer-tagline">Healthy and Beauty</div>
+        <p>Nhà phân phối chính hãng thực phẩm chức năng và sản phẩm sức khỏe & làm đẹp hàng đầu tại Việt Nam.</p>
+        <div class="footer-social"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">▶</a><a href="#" class="social-btn">Z</a></div>
+      </div>
+      <div class="footer-col"><h4>Về chúng tôi</h4><ul>
+        <li><a href="about.html">Giới thiệu</a></li><li><a href="wholesale.html">Chính sách sỉ</a></li>
+        <li><a href="for-brands.html">For Brands</a></li><li><a href="news.html">Tin tức</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Chính sách</h4><ul>
+        <li><a href="#">Cách thức mua hàng</a></li><li><a href="#">Đổi trả hàng</a></li>
+        <li><a href="#">Bảo mật</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Liên hệ</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>282 Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633">0865 565 633</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a></div>
+      </div>
+    </div></div></div>
+    <div class="footer-bottom"><div class="container">Bản quyền thuộc về Công ty TNHH HALOVN ©2025</div></div>
+  </footer>
+  <button class="scroll-top" id="scrollTop" aria-label="Lên đầu"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <script src="script.js"></script>
+</body>
+</html>

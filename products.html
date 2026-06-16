@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản Phẩm – HALOVN Nhà Phân Phối Thực Phẩm Chức Năng</title>
+  <meta name="description" content="Hơn 500 sản phẩm thực phẩm chức năng, sức khỏe và làm đẹp chính hãng từ các thương hiệu hàng đầu thế giới. Liên hệ HALOVN để nhận giá sỉ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .products-layout { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    .sidebar { background: var(--white); border: 1.5px solid var(--grey-mid); border-radius: var(--radius); padding: 24px; height: fit-content; }
+    .sidebar h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--blue); }
+    .filter-list { list-style: none; }
+    .filter-list li { padding: 0; }
+    .filter-list a { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; font-size: 14px; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--grey-mid); transition: color var(--transition); }
+    .filter-list a:hover, .filter-list a.active { color: var(--blue); font-weight: 600; }
+    .filter-list .count { background: var(--grey-light); color: var(--muted); font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 20px; }
+    .filter-list a.active .count { background: var(--blue); color: white; }
+    .products-main h2 { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .products-meta { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .product-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .product-tabs .tab-btn { padding: 8px 16px; background: var(--grey-light); border: none; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all var(--transition); }
+    .product-tabs .tab-btn.active { background: var(--blue); color: white; }
+    .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .product-card { background: var(--white); border: 1.5px solid var(--grey-mid); border-radius: var(--radius); overflow: hidden; transition: all var(--transition); }
+    .product-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,174,239,0.12); }
+    .product-img { aspect-ratio: 1; background: var(--grey-light); display: flex; align-items: center; justify-content: center; font-size: 56px; }
+    .product-info { padding: 14px; }
+    .product-brand { font-size: 11px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .product-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.35; }
+    .product-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .wholesale-label { font-size: 11px; font-weight: 700; color: var(--green); background: rgba(57,181,74,0.1); padding: 3px 8px; border-radius: 4px; }
+    .product-cta { font-size: 12px; font-weight: 700; color: var(--blue); text-decoration: none; transition: color var(--transition); }
+    .product-cta:hover { color: var(--navy); }
+    .badge-hot { font-size: 10px; font-weight: 800; background: #EF4444; color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+    .badge-new { font-size: 10px; font-weight: 800; background: var(--green); color: white; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+    .cta-wholesale-band { background: linear-gradient(135deg, var(--navy), var(--navy-light)); border-radius: var(--radius); padding: 32px; text-align: center; margin-top: 32px; }
+    .cta-wholesale-band h3 { color: white; font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .cta-wholesale-band p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 20px; }
+    @media (min-width: 768px) {
+      .products-layout { grid-template-columns: 240px 1fr; }
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <div class="top-bar-contact">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633">0865 565 633</a></span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a></span>
+        </div>
+        <div class="lang-toggle"><button class="active" data-lang="vi">VI</button><button data-lang="en">EN</button></div>
+      </div>
+    </div>
+  </div>
+  <header>
+    <div class="container"><div class="header-main">
+      <a href="index.html" class="logo">
+        <img src="Logo.png" alt="HALOVN" height="48" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;flex-direction:column"><span class="logo-name">Halo<span class="vn">vn</span></span><span class="logo-tagline">Healthy and Beauty</span></div>
+      </a>
+      <a href="tel:0865565633" class="mobile-hotline" style="align-items:center;gap:6px;font-weight:700;color:var(--blue);font-size:14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>0865 565 633</a>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div></div>
+    <nav class="nav"><div class="container"><div class="nav-inner nav-desktop">
+      <a href="index.html">Trang chủ</a><a href="about.html">Giới thiệu</a>
+      <a href="products.html" class="active">Sản phẩm</a><a href="wholesale.html">Chính sách sỉ</a>
+      <a href="news.html">Tin tức</a><a href="contact.html">Liên hệ</a>
+      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
+    </div></div></nav>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html">Trang chủ</a><a href="about.html">Giới thiệu</a>
+      <a href="products.html" class="active">Sản phẩm</a><a href="wholesale.html">Chính sách sỉ</a>
+      <a href="news.html">Tin tức</a><a href="contact.html">Liên hệ</a>
+      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="page-hero-badge">Danh Mục Sản Phẩm</span>
+        <h1>500+ Sản Phẩm <span>Chính Hãng</span></h1>
+        <p>Thực phẩm chức năng, sức khỏe & làm đẹp từ các thương hiệu hàng đầu thế giới. Liên hệ để nhận báo giá sỉ.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="products-layout">
+          <!-- SIDEBAR -->
+          <aside class="sidebar reveal">
+            <h3>Danh Mục</h3>
+            <ul class="filter-list">
+              <li><a href="#" class="active">Tất Cả Sản Phẩm <span class="count">500+</span></a></li>
+              <li><a href="#">Thực Phẩm Bổ Sung <span class="count">180</span></a></li>
+              <li><a href="#">Vitamin & Khoáng Chất <span class="count">95</span></a></li>
+              <li><a href="#">Mẹ & Bé <span class="count">72</span></a></li>
+              <li><a href="#">Người Cao Tuổi <span class="count">60</span></a></li>
+              <li><a href="#">Sắc Đẹp & Làm Đẹp <span class="count">54</span></a></li>
+              <li><a href="#">Tập Thể Thao <span class="count">39</span></a></li>
+            </ul>
+            <h3 style="margin-top:28px">Thương Hiệu</h3>
+            <ul class="filter-list">
+              <li><a href="#">Blackmores</a></li>
+              <li><a href="#">Healthy Care</a></li>
+              <li><a href="#">Bio Island</a></li>
+              <li><a href="#">La Roche-Posay</a></li>
+              <li><a href="#">Swisse</a></li>
+              <li><a href="#">Nature Made</a></li>
+              <li><a href="#">OstroVit</a></li>
+              <li><a href="#">Kiehl's</a></li>
+            </ul>
+            <div style="margin-top:24px;padding:16px;background:var(--grey-light);border-radius:10px;text-align:center">
+              <p style="font-size:13px;color:var(--muted);margin-bottom:10px">Cần báo giá sỉ?</p>
+              <a href="contact.html" class="btn btn-primary" style="font-size:13px;padding:10px 18px">Liên hệ ngay</a>
+            </div>
+          </aside>
+
+          <!-- MAIN PRODUCTS -->
+          <div class="products-main">
+            <h2 class="reveal">Tất Cả Sản Phẩm</h2>
+            <p class="products-meta reveal reveal-delay-1">Hiển thị 500+ sản phẩm — Liên hệ để nhận bảng giá sỉ chi tiết</p>
+            <div class="product-tabs reveal reveal-delay-2">
+              <button class="tab-btn active">Tất cả</button>
+              <button class="tab-btn">Bán chạy</button>
+              <button class="tab-btn">Mới nhất</button>
+              <button class="tab-btn">Theo brand</button>
+            </div>
+            <div class="product-grid">
+              <div class="product-card reveal reveal-delay-1">
+                <div class="product-img">💊</div>
+                <div class="product-info">
+                  <div class="product-brand">Blackmores</div>
+                  <div class="product-name">Executive B Stress Formula <span class="badge-hot">HOT</span></div>
+                  <div class="product-desc">Vitamin B tổng hợp, hỗ trợ hệ thần kinh và giảm mệt mỏi</div>
+                  <div class="product-footer">
+                    <span class="wholesale-label">Giá sỉ</span>
+                    <a href="contact.html" class="product-cta">Hỏi giá →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card reveal reveal-delay-2">
+                <div class="product-img">🐟</div>
+                <div class="product-info">
+                  <div class="product-brand">Blackmores</div>
+                  <div class="product-name">Odourless Fish Oil 1000mg</div>
+                  <div class="product-desc">Omega-3 không mùi, hỗ trợ tim mạch và não bộ</div>
+                  <div class="product-footer">
+                    <span class="wholesale-label">Giá sỉ</span>
+                    <a href="contact.html" class="product-cta">Hỏi giá →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card reveal reveal-delay-3">
+                <div class="product-img">🌿</div>
+                <div class="product-info">
+                  <div class="product-brand">Healthy Care</div>
+                  <div class="product-name">Royal Jelly 1000mg <span class="badge-hot">HOT</span></div>
+                  <div class="product-desc">Sữa ong chúa tươi, tăng cường miễn dịch và năng lượng</div>
+                  <div class="product-footer">
+                    <span class="wholesale-label">Giá sỉ</span>
+                    <a href="contact.html" class="product-cta">Hỏi giá →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card reveal reveal-delay-4">
+                <div class="product-img">🍼</div>
+                <div class="product-info">
+                  <div class="product-brand">Bio Island</div>
+                  <div class="product-name">DHA for Pregnancy <span class="badge-new">MỚI</span></div>
+                  <div class="product-desc">DHA cho mẹ bầu, hỗ trợ phát triển não bộ thai nhi</div>
+                  <div class="product-footer">
+                    <span class="wholesale-label">Giá sỉ</span>
+                    <a href="contact.html" class="product-cta">Hỏi giá →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card reveal reveal-delay-1">
+                <div class="product-img">☀️</div>
+                <div class="product-info">
+                  <div class="product-brand">Ostelin</div>
+                  <div class="product-name">Vitamin D3 1000 IU</div>
+                  <div class="product-desc">Vitamin D3 hỗ trợ xương chắc khỏe, hệ miễn dịch</div>
+                  <div class="product-footer">
+                    <span class="wholesale-label">Giá sỉ</span>
+                    <a href="contact.html" class="product-cta">Hỏi giá →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card reveal reveal-delay-2">
+                <div class="product-img">💪</div>
+                <div class="product-info">
+                  <div class="product-brand">OstroVit</div>
+                  <div class="product-name">Whey Protein 700g <span class="badge-new">MỚI</span></div>
+                  <div class="product-desc">Protein whey cao cấp cho người tập gym, hồi phục cơ bắp</div>
+                  <div class="product-footer">
+                    <span class="wholesale-label">Giá sỉ</span>
+                    <a href="contact.html" class="product-cta">Hỏi giá →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card reveal reveal-delay-3">
+                <div class="product-img">✨</div>
+                <div class="product-info">
+                  <div class="product-brand">La Roche-Posay</div>
+                  <div class="product-name">Anthelios SPF 50+</div>
+                  <div class="product-desc">Kem chống nắng cho da nhạy cảm, UVA/UVB phổ rộng</div>
+                  <div class="product-footer">
+                    <span class="wholesale-label">Giá sỉ</span>
+                    <a href="contact.html" class="product-cta">Hỏi giá →</a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-card reveal reveal-delay-4">
+                <div class="product-img">🌸</div>
+                <div class="product-info">
+                  <div class="product-brand">Swisse</div>
+                  <div class="product-name">Ultiboost Collagen+ <span class="badge-hot">HOT</span></div>
+                  <div class="product-desc">Collagen thủy phân, hỗ trợ da, tóc, móng khỏe đẹp</div>
+                  <div class="product-footer">
+                    <span class="wholesale-label">Giá sỉ</span>
+                    <a href="contact.html" class="product-cta">Hỏi giá →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cta-wholesale-band reveal">
+              <h3>Cần Bảng Giá Sỉ Chi Tiết?</h3>
+              <p>Chúng tôi có hơn 500 sản phẩm với giá sỉ cạnh tranh dành cho đại lý, nhà thuốc và reseller</p>
+              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+                <a href="wholesale.html" class="btn btn-primary">Xem Chính Sách Sỉ</a>
+                <a href="contact.html" class="btn btn-outline-white">Liên Hệ Ngay</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main"><div class="container"><div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Halo<span class="vn">vn</span></div>
+        <div class="footer-tagline">Healthy and Beauty</div>
+        <p>Nhà phân phối chính hãng thực phẩm chức năng và sản phẩm sức khỏe & làm đẹp hàng đầu tại Việt Nam.</p>
+        <div class="footer-social"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">▶</a><a href="#" class="social-btn">Z</a></div>
+      </div>
+      <div class="footer-col"><h4>Danh Mục</h4><ul>
+        <li><a href="#">Thực Phẩm Bổ Sung</a></li><li><a href="#">Vitamin & Khoáng Chất</a></li>
+        <li><a href="#">Mẹ & Bé</a></li><li><a href="#">Sắc Đẹp</a></li><li><a href="#">Tập Thể Thao</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Chính sách</h4><ul>
+        <li><a href="wholesale.html">Chính sách sỉ</a></li><li><a href="#">Đổi trả hàng</a></li>
+        <li><a href="#">Bảo mật</a></li><li><a href="#">Điều khoản</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Liên hệ</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>282 Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633">0865 565 633</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a></div>
+      </div>
+    </div></div></div>
+    <div class="footer-bottom"><div class="container">Bản quyền thuộc về Công ty TNHH HALOVN ©2025</div></div>
+  </footer>
+  <button class="scroll-top" id="scrollTop" aria-label="Lên đầu"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <script src="script.js"></script>
+</body>
+</html>

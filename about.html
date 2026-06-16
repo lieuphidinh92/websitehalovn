@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giới Thiệu – HALOVN Nhà Phân Phối Thực Phẩm Chức Năng</title>
+  <meta name="description" content="Tìm hiểu về HALOVN – đơn vị phân phối chính hãng thực phẩm chức năng hàng đầu Việt Nam. Sứ mệnh, giá trị cốt lõi và đội ngũ lãnh đạo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+    .about-visual { border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(135deg, #0093cc, #00AEEF, #33c1f5); display: flex; align-items: center; justify-content: center; font-size: 80px; box-shadow: 0 24px 64px rgba(0,174,239,0.3); }
+    .values-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .value-card { display: flex; align-items: flex-start; gap: 16px; background: var(--grey-light); border-radius: var(--radius); padding: 20px; }
+    .value-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .value-icon svg { width: 22px; height: 22px; fill: white; }
+    .value-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .value-card p { font-size: 13px; color: var(--muted); }
+    .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .team-card { text-align: center; }
+    .team-avatar { width: 100%; aspect-ratio: 1; border-radius: 16px; background: linear-gradient(135deg, #e8f7ff, #c8ecfc); display: flex; align-items: center; justify-content: center; font-size: 52px; margin-bottom: 12px; }
+    .team-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .team-card p { font-size: 13px; color: var(--blue); font-weight: 600; }
+    .mission-block { background: var(--grey-light); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; border-left: 4px solid var(--blue); }
+    .mission-block h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-bottom: 8px; }
+    .mission-block p { font-size: 15px; color: var(--text); line-height: 1.7; }
+    .brands-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .brand-card { background: var(--white); border: 1.5px solid var(--grey-mid); border-radius: 10px; padding: 16px; text-align: center; font-weight: 700; font-size: 13px; color: var(--navy); transition: all var(--transition); }
+    .brand-card:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+    @media (min-width: 768px) {
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: repeat(4, 1fr); }
+      .brands-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (min-width: 1024px) { .values-grid { grid-template-columns: repeat(3, 1fr); } }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <div class="top-bar-contact">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633">0865 565 633</a></span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a></span>
+          <span>Thứ 2 – Thứ 7 | 8h – 18h30</span>
+        </div>
+        <div class="lang-toggle">
+          <button class="active" data-lang="vi">VI</button>
+          <button data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="header-main">
+        <a href="index.html" class="logo">
+          <img src="Logo.png" alt="HALOVN" height="48" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none;flex-direction:column"><span class="logo-name">Halo<span class="vn">vn</span></span><span class="logo-tagline">Healthy and Beauty</span></div>
+        </a>
+        <a href="tel:0865565633" class="mobile-hotline" style="align-items:center;gap:6px;font-weight:700;color:var(--blue);font-size:14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>0865 565 633</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="nav"><div class="container"><div class="nav-inner nav-desktop">
+      <a href="index.html" data-vi="Trang chủ" data-en="Home">Trang chủ</a>
+      <a href="about.html" class="active" data-vi="Giới thiệu" data-en="About Us">Giới thiệu</a>
+      <a href="products.html" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a>
+      <a href="wholesale.html" data-vi="Chính sách sỉ" data-en="Wholesale">Chính sách sỉ</a>
+      <a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a>
+      <a href="contact.html" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
+      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
+    </div></div></nav>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="index.html">Trang chủ</a><a href="about.html" class="active">Giới thiệu</a>
+      <a href="products.html">Sản phẩm</a><a href="wholesale.html">Chính sách sỉ</a>
+      <a href="news.html">Tin tức</a><a href="contact.html">Liên hệ</a>
+      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="page-hero-badge" data-vi="Về Chúng Tôi" data-en="About Us">Về Chúng Tôi</span>
+        <h1 data-vi="HALOVN – Chúng Tôi Là Ai?" data-en="HALOVN – Who We Are">HALOVN – Chúng Tôi Là Ai?</h1>
+        <p data-vi="Nhà phân phối chính hãng thực phẩm chức năng & sức khỏe làm đẹp hàng đầu Việt Nam" data-en="Vietnam's leading authorized distributor of health, wellness & beauty products">Nhà phân phối chính hãng thực phẩm chức năng & sức khỏe làm đẹp hàng đầu Việt Nam</p>
+      </div>
+    </section>
+
+    <!-- VỀ HALOVN -->
+    <section class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-visual reveal">🏢</div>
+          <div>
+            <h2 class="section-title reveal" data-vi="Về <span>HALOVN</span>" data-en="About <span>HALOVN</span>">Về <span>HALOVN</span></h2>
+            <p class="reveal reveal-delay-1" style="color:var(--muted);line-height:1.8;margin-bottom:16px" data-vi="HALOVN tự hào là nhà phân phối chính hãng các thương hiệu thực phẩm chức năng hàng đầu thế giới, bao gồm Blackmores, Healthy Care, La Roche Posay, Vichy, Kiehl's, Klairs và nhiều tên tuổi khác. Chúng tôi cam kết mang đến cho khách hàng trải nghiệm mua sắm đẳng cấp, nơi chất lượng sản phẩm chính hãng được ưu tiên hàng đầu." data-en="HALOVN is an authorized distributor of world-class health & beauty brands including Blackmores, Healthy Care, La Roche Posay, Vichy, Kiehl's, Klairs and many more. We are committed to delivering authentic premium products to the Vietnamese market.">HALOVN tự hào là nhà phân phối chính hãng các thương hiệu thực phẩm chức năng hàng đầu thế giới, bao gồm Blackmores, Healthy Care, La Roche Posay, Vichy, Kiehl's, Klairs và nhiều tên tuổi khác. Chúng tôi cam kết mang đến cho khách hàng trải nghiệm mua sắm đẳng cấp, nơi chất lượng sản phẩm chính hãng được ưu tiên hàng đầu.</p>
+            <div class="mission-block reveal reveal-delay-2">
+              <h3 data-vi="Sứ Mệnh" data-en="Mission">Sứ Mệnh</h3>
+              <p data-vi="Kết nối người tiêu dùng Việt Nam với những sản phẩm chăm sóc sức khỏe và làm đẹp tốt nhất thế giới, thông qua mạng lưới phân phối chuyên nghiệp và đáng tin cậy." data-en="To connect Vietnamese consumers with the world's finest health and beauty products through a professional, trustworthy distribution network.">Kết nối người tiêu dùng Việt Nam với những sản phẩm chăm sóc sức khỏe và làm đẹp tốt nhất thế giới, thông qua mạng lưới phân phối chuyên nghiệp và đáng tin cậy.</p>
+            </div>
+            <div class="mission-block reveal reveal-delay-3" style="border-left-color:var(--green)">
+              <h3 style="color:var(--green)" data-vi="Tầm Nhìn" data-en="Vision">Tầm Nhìn</h3>
+              <p data-vi="Trở thành công ty nhập khẩu và phân phối độc quyền các thương hiệu sức khỏe & làm đẹp hàng đầu tại Việt Nam, xây dựng hệ sinh thái chăm sóc sức khỏe toàn diện cho người Việt." data-en="To become the exclusive import and distribution company for leading health & beauty brands in Vietnam, building a comprehensive healthcare ecosystem.">Trở thành công ty nhập khẩu và phân phối độc quyền các thương hiệu sức khỏe & làm đẹp hàng đầu tại Việt Nam, xây dựng hệ sinh thái chăm sóc sức khỏe toàn diện cho người Việt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIÁ TRỊ CỐT LÕI -->
+    <section class="section" style="background:var(--grey-light)">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title reveal" data-vi="Giá Trị <span>Cốt Lõi</span>" data-en="Our Core <span>Values</span>">Giá Trị <span>Cốt Lõi</span></h2>
+          <p class="section-sub reveal reveal-delay-1" data-vi="5 giá trị định hướng mọi hoạt động của HALOVN" data-en="5 values that guide everything we do">5 giá trị định hướng mọi hoạt động của HALOVN</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal reveal-delay-1">
+            <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+            <div><h4 data-vi="Cam Kết Chất Lượng Chính Hãng" data-en="Authentic Quality Commitment">Cam Kết Chất Lượng Chính Hãng</h4><p data-vi="Chỉ phân phối sản phẩm có nguồn gốc rõ ràng, giấy ủy quyền từ hãng" data-en="Only distribute products with clear origin and brand authorization">Chỉ phân phối sản phẩm có nguồn gốc rõ ràng, giấy ủy quyền từ hãng</p></div>
+          </div>
+          <div class="value-card reveal reveal-delay-2">
+            <div class="value-icon" style="background:var(--green)"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+            <div><h4 data-vi="Đội Ngũ Chuyên Nghiệp" data-en="Professional Team">Đội Ngũ Chuyên Nghiệp</h4><p data-vi="Nhân sự được đào tạo chuyên sâu, am hiểu sản phẩm và thị trường" data-en="Well-trained staff with deep product and market knowledge">Nhân sự được đào tạo chuyên sâu, am hiểu sản phẩm và thị trường</p></div>
+          </div>
+          <div class="value-card reveal reveal-delay-3">
+            <div class="value-icon" style="background:#F59E0B"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+            <div><h4 data-vi="Đổi Mới Sáng Tạo" data-en="Innovation">Đổi Mới Sáng Tạo</h4><p data-vi="Không ngừng cải tiến quy trình, công nghệ và phương thức phục vụ khách hàng" data-en="Continuously improving processes and customer service approaches">Không ngừng cải tiến quy trình, công nghệ và phương thức phục vụ khách hàng</p></div>
+          </div>
+          <div class="value-card reveal reveal-delay-4">
+            <div class="value-icon" style="background:#8B5CF6"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div>
+            <div><h4 data-vi="Phát Triển Bền Vững" data-en="Sustainable Growth">Phát Triển Bền Vững</h4><p data-vi="Xây dựng mối quan hệ đối tác dài hạn, tạo giá trị bền vững cho cộng đồng" data-en="Building long-term partnerships and sustainable community value">Xây dựng mối quan hệ đối tác dài hạn, tạo giá trị bền vững cho cộng đồng</p></div>
+          </div>
+          <div class="value-card reveal reveal-delay-5">
+            <div class="value-icon" style="background:#EF4444"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div><h4 data-vi="Khách Hàng Là Trọng Tâm" data-en="Customer-Centric">Khách Hàng Là Trọng Tâm</h4><p data-vi="Mọi quyết định đều xuất phát từ nhu cầu và lợi ích của khách hàng" data-en="Every decision starts from customer needs and interests">Mọi quyết định đều xuất phát từ nhu cầu và lợi ích của khách hàng</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ĐỘI NGŨ -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title reveal" data-vi="Đội Ngũ <span>Lãnh Đạo</span>" data-en="Our <span>Leadership</span>">Đội Ngũ <span>Lãnh Đạo</span></h2>
+          <p class="section-sub reveal reveal-delay-1" data-vi="Con người tạo nên sự khác biệt" data-en="People make the difference">Con người tạo nên sự khác biệt</p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card reveal reveal-delay-1">
+            <div class="team-avatar">👨‍💼</div>
+            <h4>Mr. Phí Đình Liệu</h4><p data-vi="CEO & Founder" data-en="CEO & Founder">CEO & Founder</p>
+          </div>
+          <div class="team-card reveal reveal-delay-2">
+            <div class="team-avatar" style="background:linear-gradient(135deg,#e8fff0,#c8f0d4)">👨‍💻</div>
+            <h4>Mr. Hoài Nam</h4><p data-vi="Co-Founder" data-en="Co-Founder">Co-Founder</p>
+          </div>
+          <div class="team-card reveal reveal-delay-3">
+            <div class="team-avatar" style="background:linear-gradient(135deg,#f3e8ff,#dcc8f0)">👨‍🏫</div>
+            <h4>Mr. Thế Anh</h4><p data-vi="Leader TMĐT" data-en="E-Commerce Lead">Leader TMĐT</p>
+          </div>
+          <div class="team-card reveal reveal-delay-4">
+            <div class="team-avatar" style="background:linear-gradient(135deg,#ffe8f0,#f0c8d4)">👩‍💼</div>
+            <h4>Ms. Nguyễn Hạnh</h4><p data-vi="Leader Nhân sự" data-en="HR Lead">Leader Nhân sự</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THƯƠNG HIỆU PHÂN PHỐI -->
+    <section class="section" style="background:var(--grey-light)">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title reveal" data-vi="Thương Hiệu <span>Phân Phối</span>" data-en="Brands We <span>Distribute</span>">Thương Hiệu <span>Phân Phối</span></h2>
+          <p class="section-sub reveal reveal-delay-1" data-vi="Các thương hiệu hàng đầu thế giới tại Việt Nam" data-en="World-leading brands available in Vietnam">Các thương hiệu hàng đầu thế giới tại Việt Nam</p>
+        </div>
+        <div class="brands-grid">
+          <div class="brand-card reveal reveal-delay-1">Blackmores</div>
+          <div class="brand-card reveal reveal-delay-1">Healthy Care</div>
+          <div class="brand-card reveal reveal-delay-2">Bio Island</div>
+          <div class="brand-card reveal reveal-delay-2">Puritan's Pride</div>
+          <div class="brand-card reveal reveal-delay-3">OstroVit</div>
+          <div class="brand-card reveal reveal-delay-3">Nature Made</div>
+          <div class="brand-card reveal reveal-delay-4">BetterYou</div>
+          <div class="brand-card reveal reveal-delay-4">USOLAB</div>
+          <div class="brand-card reveal reveal-delay-5">Swisse</div>
+          <div class="brand-card reveal reveal-delay-5">NOW Foods</div>
+          <div class="brand-card reveal">Orgain</div>
+          <div class="brand-card reveal">Ostelin</div>
+          <div class="brand-card reveal">Aptamil</div>
+          <div class="brand-card reveal">La Roche-Posay</div>
+          <div class="brand-card reveal">Vichy</div>
+          <div class="brand-card reveal">Kiehl's</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA LIÊN HỆ -->
+    <section style="background:linear-gradient(135deg,var(--navy),var(--navy-light));padding:64px 0;text-align:center">
+      <div class="container">
+        <h2 class="reveal" style="color:white;font-size:clamp(22px,4vw,34px);font-weight:800;margin-bottom:12px" data-vi="Muốn Hợp Tác Cùng HALOVN?" data-en="Want to Partner with HALOVN?">Muốn Hợp Tác Cùng HALOVN?</h2>
+        <p class="reveal reveal-delay-1" style="color:rgba(255,255,255,0.75);margin-bottom:32px;font-size:16px" data-vi="Liên hệ ngay để nhận tư vấn miễn phí và bảng giá sỉ" data-en="Contact us for a free consultation and wholesale pricing">Liên hệ ngay để nhận tư vấn miễn phí và bảng giá sỉ</p>
+        <div class="reveal reveal-delay-2" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="wholesale.html" class="btn btn-primary" data-vi="Đăng Ký Đại Lý Sỉ" data-en="Become a Wholesale Partner">Đăng Ký Đại Lý Sỉ</a>
+          <a href="contact.html" class="btn btn-outline-white" data-vi="Liên Hệ Chúng Tôi" data-en="Contact Us">Liên Hệ Chúng Tôi</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-main"><div class="container"><div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Halo<span class="vn">vn</span></div>
+        <div class="footer-tagline">Healthy and Beauty</div>
+        <p data-vi="Nhà phân phối chính hãng thực phẩm chức năng và sản phẩm sức khỏe & làm đẹp hàng đầu tại Việt Nam." data-en="Authorized distributor of premium health & beauty products in Vietnam.">Nhà phân phối chính hãng thực phẩm chức năng và sản phẩm sức khỏe & làm đẹp hàng đầu tại Việt Nam.</p>
+        <div class="footer-social"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">▶</a><a href="#" class="social-btn">Z</a></div>
+      </div>
+      <div class="footer-col"><h4 data-vi="Về chúng tôi" data-en="Company">Về chúng tôi</h4><ul>
+        <li><a href="about.html" data-vi="Giới thiệu" data-en="About">Giới thiệu</a></li>
+        <li><a href="wholesale.html" data-vi="Chính sách sỉ" data-en="Wholesale">Chính sách sỉ</a></li>
+        <li><a href="for-brands.html">For Brands</a></li>
+        <li><a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a></li>
+        <li><a href="contact.html" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
+      </ul></div>
+      <div class="footer-col"><h4 data-vi="Chính sách" data-en="Policies">Chính sách</h4><ul>
+        <li><a href="#" data-vi="Cách thức mua hàng" data-en="How to Order">Cách thức mua hàng</a></li>
+        <li><a href="#" data-vi="Chính sách đổi trả" data-en="Return Policy">Chính sách đổi trả</a></li>
+        <li><a href="#" data-vi="Chính sách bảo mật" data-en="Privacy Policy">Chính sách bảo mật</a></li>
+      </ul></div>
+      <div class="footer-col"><h4 data-vi="Liên hệ" data-en="Contact">Liên hệ</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>282 Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633">0865 565 633</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a></div>
+      </div>
+    </div></div></div>
+    <div class="footer-bottom"><div class="container">Bản quyền thuộc về Công ty TNHH HALOVN ©2025</div></div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Lên đầu"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+  <script src="script.js"></script>
+</body>
+</html>

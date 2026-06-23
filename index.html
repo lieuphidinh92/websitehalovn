@@ -1,1538 +1,268 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HALOVN – Nhà Phân Phối Thực Phẩm Chức Năng Hàng Đầu Việt Nam</title>
-  <meta name="description" content="HALOVN – đơn vị phân phối chính hãng 500+ sản phẩm sức khỏe & làm đẹp từ các thương hiệu hàng đầu thế giới. Chính sách đại lý sỉ hấp dẫn.">
-  <meta property="og:title" content="HALOVN – Phân Phối Thực Phẩm Chức Năng Chính Hãng">
-  <meta property="og:description" content="Đơn vị phân phối thực phẩm chức năng hàng đầu Việt Nam. 500+ sản phẩm chính hãng.">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* ===== TOKENS ===== */
-    :root {
-      --blue: #00AEEF;
-      --blue-dark: #0090C8;
-      --navy: #1A2B4A;
-      --navy-light: #243555;
-      --green: #39B54A;
-      --white: #ffffff;
-      --grey-light: #F5F7FA;
-      --grey-mid: #E8ECF0;
-      --text: #1A1A2E;
-      --muted: #6B7280;
-      --font: 'Be Vietnam Pro', system-ui, sans-serif;
-      --radius: 12px;
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-hover: 0 8px 32px rgba(0,174,239,0.18);
-      --transition: 0.3s ease;
-    }
-
-    /* ===== RESET ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--white); overflow-x: hidden; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    button { cursor: pointer; border: none; background: none; font-family: var(--font); }
-
-    /* ===== SCROLL ANIMATION BASE ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
-
-    /* ===== LAYOUT ===== */
-    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-    .section { padding: 60px 0; }
-    .section-sm { padding: 40px 0; }
-    .section-title {
-      font-size: clamp(22px, 4vw, 32px);
-      font-weight: 800;
-      color: var(--navy);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-    }
-    .section-title span { color: var(--blue); }
-    .section-sub { color: var(--muted); font-size: 15px; margin-bottom: 40px; }
-
-    /* ===== TOP BAR ===== */
-    .top-bar {
-      background: var(--grey-light);
-      border-bottom: 1px solid var(--grey-mid);
-      padding: 8px 0;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .top-bar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .top-bar a { color: var(--muted); transition: color var(--transition); }
-    .top-bar a:hover { color: var(--blue); }
-    .top-bar-contact { display: flex; align-items: center; gap: 20px; }
-    .top-bar-contact span { display: flex; align-items: center; gap: 6px; }
-    .top-bar-right { display: flex; align-items: center; gap: 12px; }
-    .lang-toggle {
-      display: flex;
-      border: 1px solid var(--grey-mid);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-    .lang-toggle button {
-      padding: 3px 10px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      transition: all var(--transition);
-    }
-    .lang-toggle button.active {
-      background: var(--blue);
-      color: var(--white);
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: var(--white);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-    .header-main {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 0;
-      gap: 16px;
-    }
-    .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .logo img { height: 48px; width: auto; }
-    .logo-text { display: flex; flex-direction: column; }
-    .logo-name {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--blue);
-      line-height: 1;
-    }
-    .logo-name .vn {
-      background: var(--green);
-      color: white;
-      border-radius: 4px;
-      padding: 0 4px;
-      font-size: 18px;
-    }
-    .logo-tagline { font-size: 10px; color: var(--muted); font-weight: 500; letter-spacing: 0.5px; }
-
-    /* NAV */
-    .nav { background: var(--blue); }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-    }
-    .nav a {
-      display: block;
-      padding: 14px 20px;
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      transition: background var(--transition);
-      position: relative;
-    }
-    .nav a:hover, .nav a.active { background: rgba(0,0,0,0.15); }
-    .nav a.nav-highlight {
-      background: var(--green);
-      border-radius: 0;
-    }
-    .nav a.nav-highlight:hover { background: #2ea040; }
-
-    /* HAMBURGER */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      padding: 8px;
-      cursor: pointer;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--navy);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* MOBILE NAV */
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: var(--navy);
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      padding: 14px 20px;
-      color: var(--white);
-      font-weight: 600;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      transition: background var(--transition);
-    }
-    .mobile-nav a:hover { background: rgba(255,255,255,0.08); }
-    .mobile-nav .nav-highlight { color: #7EE89B; }
-
-    /* ===== HERO ===== */
-    .hero {
-      background: linear-gradient(160deg, #0093cc 0%, #00AEEF 35%, #33c1f5 65%, #c8ecfc 100%);
-      position: relative;
-      overflow: hidden;
-      min-height: 560px;
-      display: flex;
-      align-items: center;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 700px; height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%);
-      top: -250px; right: -150px;
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 80px;
-      background: var(--white);
-      clip-path: ellipse(55% 100% at 50% 100%);
-      pointer-events: none;
-    }
-    .hero-wave {
-      position: absolute;
-      bottom: -2px; left: 0; right: 0;
-      height: 60px;
-      pointer-events: none;
-    }
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-      padding: 60px 0;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0,174,239,0.12);
-      border: 1px solid rgba(0,174,239,0.3);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--blue-dark);
-      margin-bottom: 20px;
-    }
-    .hero-badge::before { content: '●'; color: var(--green); font-size: 8px; }
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 52px);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 16px;
-      text-shadow: 0 2px 12px rgba(0,0,80,0.15);
-    }
-    .hero h1 span { color: var(--white); display: block; }
-    .hero-badge {
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.4);
-      color: var(--white);
-    }
-    .hero-badge::before { color: #7EE89B; }
-    .hero-sub {
-      font-size: 16px;
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 32px;
-      max-width: 500px;
-      line-height: 1.7;
-    }
-    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 700;
-      transition: all var(--transition);
-      min-height: 48px;
-    }
-    .btn-primary {
-      background: var(--blue);
-      color: var(--white);
-    }
-    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,174,239,0.35); }
-    .btn-secondary {
-      background: rgba(255,255,255,0.15);
-      color: var(--white);
-      border: 2px solid rgba(255,255,255,0.6);
-      backdrop-filter: blur(4px);
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.28); border-color: white; transform: translateY(-2px); }
-    .btn-outline-white {
-      background: transparent;
-      color: var(--white);
-      border: 2px solid rgba(255,255,255,0.5);
-    }
-    .btn-outline-white:hover { background: rgba(255,255,255,0.15); border-color: white; }
-
-    .hero-visual {
-      display: none;
-      position: relative;
-    }
-    .hero-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .hero-card {
-      background: rgba(255,255,255,0.95);
-      border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: 0 8px 32px rgba(0,60,120,0.18);
-      text-align: center;
-      backdrop-filter: blur(8px);
-    }
-    .hero-card-icon {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 10px;
-      font-size: 22px;
-    }
-    .hero-card p { font-size: 13px; font-weight: 600; color: var(--navy); }
-    .hero-card span { font-size: 11px; color: var(--muted); }
-
-    /* ===== TRUST BAR ===== */
-    .trust-bar {
-      background: var(--white);
-      border-top: 3px solid var(--blue);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
-    .trust-bar-inner {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0;
-    }
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 24px 20px;
-      border-right: 1px solid var(--grey-mid);
-      border-bottom: 1px solid var(--grey-mid);
-    }
-    .trust-item:nth-child(2n) { border-right: none; }
-    .trust-item:nth-child(3), .trust-item:nth-child(4) { border-bottom: none; }
-    .trust-icon {
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, #e8f7ff, #c8ecfc);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .trust-icon svg { width: 24px; height: 24px; fill: var(--blue); }
-    .trust-label { font-size: 15px; font-weight: 700; color: var(--navy); }
-    .trust-desc { font-size: 12px; color: var(--muted); }
-
-    /* ===== BRANDS STRIP ===== */
-    .brands-section { background: var(--grey-light); overflow: hidden; padding: 40px 0; }
-    .brands-title {
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-    .brands-track-wrap { overflow: hidden; position: relative; }
-    .brands-track-wrap::before, .brands-track-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 80px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .brands-track-wrap::before { left: 0; background: linear-gradient(to right, var(--grey-light), transparent); }
-    .brands-track-wrap::after { right: 0; background: linear-gradient(to left, var(--grey-light), transparent); }
-    .brands-track {
-      display: flex;
-      gap: 20px;
-      animation: scroll-brands 30s linear infinite;
-      width: max-content;
-    }
-    .brands-track:hover { animation-play-state: paused; }
-    @keyframes scroll-brands {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    .brand-logo-card {
-      background: var(--white);
-      border: 1px solid var(--grey-mid);
-      border-radius: 10px;
-      padding: 16px 28px;
-      min-width: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 14px;
-      color: var(--navy);
-      white-space: nowrap;
-      transition: box-shadow var(--transition);
-    }
-    .brand-logo-card:hover { box-shadow: var(--shadow); }
-
-    /* ===== WHY HALOVN ===== */
-    .why-section { background: var(--white); }
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .why-card {
-      background: var(--grey-light);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      display: flex;
-      gap: 18px;
-      align-items: flex-start;
-      transition: box-shadow var(--transition), transform var(--transition);
-    }
-    .why-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
-    .why-icon {
-      width: 52px; height: 52px;
-      background: var(--blue);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .why-icon svg { width: 26px; height: 26px; fill: var(--white); }
-    .why-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-    .why-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-    /* ===== CATEGORIES ===== */
-    .categories-section { background: var(--grey-light); }
-    .cat-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .cat-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 24px 16px;
-      text-align: center;
-      border: 2px solid transparent;
-      transition: all var(--transition);
-      cursor: pointer;
-    }
-    .cat-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .cat-icon {
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #e8f7ff, #c8ecfc);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 12px;
-      font-size: 26px;
-    }
-    .cat-card h4 { font-size: 13px; font-weight: 700; color: var(--navy); }
-
-    /* ===== FOR BRANDS CTA ===== */
-    .for-brands-section {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .for-brands-section::before {
-      content: '';
-      position: absolute;
-      width: 500px; height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,174,239,0.12) 0%, transparent 70%);
-      top: -200px; right: -100px;
-    }
-    .for-brands-inner {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 70px 0;
-    }
-    .for-brands-badge {
-      display: inline-block;
-      background: rgba(0,174,239,0.2);
-      border: 1px solid rgba(0,174,239,0.4);
-      color: var(--blue);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-radius: 20px;
-      padding: 6px 18px;
-      margin-bottom: 24px;
-    }
-    .for-brands-inner h2 {
-      font-size: clamp(24px, 4vw, 40px);
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-    .for-brands-inner p {
-      color: rgba(255,255,255,0.7);
-      font-size: 16px;
-      max-width: 560px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-    }
-    .for-brands-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 40px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .for-brands-stat {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 20px 10px;
-    }
-    .for-brands-stat .num {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--blue);
-      display: block;
-    }
-    .for-brands-stat .lbl {
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-      font-weight: 500;
-    }
-    .for-brands-ctas { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-
-    /* ===== PRODUCTS ===== */
-    .products-section { background: var(--white); }
-    .products-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-    .tab-btn {
-      padding: 8px 18px;
-      border-radius: 20px;
-      border: 2px solid var(--grey-mid);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      transition: all var(--transition);
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: var(--white);
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .product-card {
-      border: 1px solid var(--grey-mid);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: all var(--transition);
-      background: var(--white);
-    }
-    .product-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
-    .product-img {
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #e8f7ff, #c8ecfc);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 52px;
-      position: relative;
-      overflow: hidden;
-    }
-    .product-img.green-bg { background: linear-gradient(135deg, #e8fff0, #c8f0d4); }
-    .product-img.purple-bg { background: linear-gradient(135deg, #f3e8ff, #dcc8f0); }
-    .product-img.orange-bg { background: linear-gradient(135deg, #fff8e8, #ffedc8); }
-    .product-img.pink-bg { background: linear-gradient(135deg, #ffe8f0, #f0c8d4); }
-    .product-badge {
-      position: absolute;
-      top: 10px; left: 10px;
-      background: var(--green);
-      color: white;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-    .product-info { padding: 16px; }
-    .product-brand { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .product-name { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 12px; line-height: 1.4; }
-    .product-cta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .product-price-label { font-size: 12px; color: var(--muted); }
-    .product-btn {
-      background: var(--blue);
-      color: white;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 7px 14px;
-      border-radius: 6px;
-      transition: background var(--transition);
-    }
-    .product-btn:hover { background: var(--blue-dark); }
-
-    /* ===== ABOUT SNIPPET ===== */
-    .about-section { background: var(--grey-light); }
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-    .about-img {
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, #0093cc 0%, #00AEEF 50%, #33c1f5 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,174,239,0.3);
-    }
-    .about-img::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 40%, rgba(0,40,80,0.15) 100%);
-    }
-    /* Scroll to top */
-    .scroll-top {
-      position: fixed;
-      bottom: 28px; right: 28px;
-      width: 44px; height: 44px;
-      background: var(--blue);
-      color: white;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 16px rgba(0,174,239,0.4);
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      z-index: 999;
-      border: none;
-    }
-    .scroll-top.visible { opacity: 1; transform: translateY(0); }
-    .scroll-top:hover { background: var(--blue-dark); transform: translateY(-2px); }
-    .about-content h2 { margin-bottom: 16px; }
-    .about-content p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; font-size: 15px; }
-    .core-values {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 24px 0;
-    }
-    .value-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--navy);
-    }
-    .value-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--blue);
-      flex-shrink: 0;
-    }
-
-    /* ===== NEWS ===== */
-    .news-section { background: var(--white); }
-    .news-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .news-card {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--grey-mid);
-      transition: all var(--transition);
-    }
-    .news-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
-    .news-img {
-      aspect-ratio: 16/9;
-      background: linear-gradient(135deg, var(--grey-light), var(--grey-mid));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-    }
-    .news-body { padding: 20px; }
-    .news-tag {
-      display: inline-block;
-      background: rgba(0,174,239,0.1);
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 3px 10px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    .news-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
-    .news-date { font-size: 12px; color: var(--muted); }
-
-    /* ===== NEWSLETTER ===== */
-    .newsletter-section {
-      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-      padding: 50px 0;
-    }
-    .newsletter-inner { text-align: center; }
-    .newsletter-inner h2 { color: white; font-size: clamp(20px, 3vw, 28px); margin-bottom: 8px; }
-    .newsletter-inner p { color: rgba(255,255,255,0.8); margin-bottom: 24px; font-size: 15px; }
-    .newsletter-form {
-      display: flex;
-      max-width: 480px;
-      margin: 0 auto;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .newsletter-form input {
-      flex: 1;
-      min-width: 200px;
-      padding: 14px 18px;
-      border-radius: 8px;
-      border: none;
-      font-size: 15px;
-      font-family: var(--font);
-      outline: none;
-    }
-    .newsletter-form button {
-      background: var(--navy);
-      color: white;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 14px 24px;
-      border-radius: 8px;
-      transition: background var(--transition);
-    }
-    .newsletter-form button:hover { background: #0f1e33; }
-
-    /* ===== FOOTER ===== */
-    footer { background: var(--navy); color: rgba(255,255,255,0.75); }
-    .footer-main { padding: 56px 0 40px; }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 36px;
-    }
-    .footer-brand .logo-name { color: white; font-size: 26px; margin-bottom: 4px; }
-    .footer-brand .logo-tagline { color: rgba(255,255,255,0.5); font-size: 11px; }
-    .footer-brand p {
-      margin-top: 16px;
-      font-size: 14px;
-      line-height: 1.7;
-      max-width: 280px;
-    }
-    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
-    .social-btn {
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.08);
-      display: flex; align-items: center; justify-content: center;
-      transition: background var(--transition);
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .social-btn:hover { background: var(--blue); }
-    .footer-col h4 {
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 18px;
-      letter-spacing: 0.5px;
-    }
-    .footer-col ul li { margin-bottom: 10px; }
-    .footer-col ul li a {
-      font-size: 14px;
-      color: rgba(255,255,255,0.65);
-      transition: color var(--transition);
-    }
-    .footer-col ul li a:hover { color: var(--blue); }
-    .footer-contact-item {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 12px;
-      font-size: 14px;
-    }
-    .footer-contact-item svg { width: 16px; height: 16px; fill: var(--blue); flex-shrink: 0; margin-top: 2px; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 20px 0;
-      text-align: center;
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
-    }
-    .footer-bottom a { color: var(--blue); }
-
-    /* ===== RESPONSIVE — TABLET ===== */
-    @media (min-width: 640px) {
-      .trust-bar-inner { grid-template-columns: repeat(4, 1fr); }
-      .trust-item { border-bottom: none; }
-      .trust-item:nth-child(2n) { border-right: 1px solid var(--grey-mid); }
-      .trust-item:last-child { border-right: none; }
-      .products-grid { grid-template-columns: repeat(3, 1fr); }
-      .news-grid { grid-template-columns: repeat(2, 1fr); }
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (min-width: 768px) {
-      .top-bar { display: block; }
-      .hero-inner { grid-template-columns: 1fr 1fr; }
-      .hero-visual { display: block; }
-      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; }
-      .about-inner { grid-template-columns: 1fr 1fr; }
-      .news-grid { grid-template-columns: repeat(3, 1fr); }
-      .cat-grid { grid-template-columns: repeat(6, 1fr); }
-    }
-
-    @media (min-width: 1024px) {
-      .why-grid { grid-template-columns: repeat(4, 1fr); }
-      .why-card { flex-direction: column; text-align: center; }
-      .why-icon { margin: 0 auto 12px; }
-    }
-
-    /* NAV responsive */
-    .nav-desktop { display: none; }
-    .mobile-hotline { display: flex; }
-    @media (max-width: 767px) {
-      .top-bar { display: none; }
-      .hamburger { display: flex; }
-    }
-    @media (min-width: 768px) {
-      .hamburger { display: none; }
-      .mobile-nav { display: none !important; }
-      .mobile-hotline { display: none !important; }
-      .nav-desktop { display: flex !important; }
-    }
-
-    /* ===== UTILITY ===== */
-    .text-center { text-align: center; }
-    .mt-8 { margin-top: 8px; }
-    .mt-16 { margin-top: 16px; }
-    .mt-32 { margin-top: 32px; }
-    .flex-center { display: flex; justify-content: center; }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HALOVN — Đơn vị phân phối thực phẩm chức năng hàng đầu Việt Nam</title>
+  <meta name="description" content="HALOVN — Nhà phân phối B2B chính hãng các thương hiệu thực phẩm chức năng và làm đẹp tại Việt Nam. Đăng ký đại lý sỉ, liên hệ lấy báo giá nhanh chóng." />
+  <meta name="keywords" content="phân phối thực phẩm chức năng, đại lý sỉ, halovn, blackmores, swisse, healthy care" />
+  <meta property="og:title" content="HALOVN — Healthy and Beauty Distribution Partner" />
+  <meta property="og:description" content="Đơn vị nhập khẩu và phân phối chính hãng các thương hiệu sức khỏe & làm đẹp tại Việt Nam." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/images/logo/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <div class="container">
-      <div class="top-bar-inner">
-        <div class="top-bar-contact">
-          <span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-            <a href="tel:0865565633">0865 565 633</a>
-          </span>
-          <span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            <a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a>
-          </span>
-          <span>Thứ 2 – Thứ 7 | 8h – 18h30</span>
-        </div>
-        <div class="top-bar-right">
-          <div class="lang-toggle">
-            <button class="active" data-lang="vi">VI</button>
-            <button data-lang="en">EN</button>
-          </div>
-        </div>
-      </div>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="HALOVN — trang chủ">
+        <img src="assets/images/logo/logo.png" alt="HALOVN logo" />
+      </a>
+      <nav class="nav" aria-label="Điều hướng chính">
+        <a href="index.html">Trang chủ</a>
+        <a href="about.html">Giới thiệu</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="wholesale.html">Chính sách sỉ</a>
+        <a href="for-brands.html">Hợp tác thương hiệu</a>
+        <a href="news.html">Tin tức</a>
+        <a href="contact.html">Liên hệ</a>
+      </nav>
+      <a href="cart.html" class="cart-link" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge is-empty" data-cart-count>0</span>
+      </a>
+      <a href="wholesale.html#register" class="btn btn--primary header__cta">Đăng ký đại lý</a>
+      <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </div>
-
-  <!-- HEADER -->
-  <header>
-    <div class="container">
-      <div class="header-main">
-        <a href="/" class="logo" aria-label="HALOVN trang chủ">
-          <img src="Logo.png" alt="HALOVN Logo" height="48" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div class="logo-text" style="display:none">
-            <span class="logo-name">Halo<span class="vn">vn</span></span>
-            <span class="logo-tagline">Healthy and Beauty</span>
-          </div>
-        </a>
-        <!-- Mobile hotline -->
-        <a href="tel:0865565633" style="display:flex;align-items:center;gap:6px;font-weight:700;color:var(--blue);font-size:14px" class="mobile-hotline">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-          0865 565 633
-        </a>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-
-    <!-- DESKTOP NAV -->
-    <nav class="nav" aria-label="Điều hướng chính">
-      <div class="container">
-        <div class="nav-inner nav-desktop">
-          <a href="/" class="active" data-vi="Trang chủ" data-en="Home">Trang chủ</a>
-          <a href="about.html" data-vi="Giới thiệu" data-en="About Us">Giới thiệu</a>
-          <a href="products.html" data-vi="Sản phẩm" data-en="Products">Sản phẩm</a>
-          <a href="wholesale.html" data-vi="Chính sách sỉ" data-en="Wholesale">Chính sách sỉ</a>
-          <a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a>
-          <a href="contact.html" data-vi="Liên hệ" data-en="Contact">Liên hệ</a>
-          <a href="for-brands.html" class="nav-highlight" data-vi="For Brands 🌐" data-en="For Brands 🌐">For Brands 🌐</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- MOBILE NAV -->
-    <nav class="mobile-nav" id="mobileNav" aria-label="Menu di động">
-      <a href="/">Trang chủ</a>
-      <a href="about.html">Giới thiệu</a>
-      <a href="products.html">Sản phẩm</a>
-      <a href="wholesale.html">Chính sách sỉ</a>
-      <a href="news.html">Tin tức</a>
-      <a href="contact.html">Liên hệ</a>
-      <a href="for-brands.html" class="nav-highlight">For Brands 🌐</a>
-    </nav>
   </header>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-nav" aria-label="Menu di động">
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="products.html">Sản phẩm</a>
+    <a href="wholesale.html">Chính sách sỉ</a>
+    <a href="for-brands.html">Hợp tác thương hiệu</a>
+    <a href="news.html">Tin tức</a>
+    <a href="contact.html">Liên hệ</a>
+    <a href="cart.html">Giỏ hàng</a>
+    <a href="wholesale.html#register" class="btn btn--primary">Đăng ký đại lý</a>
+  </div>
 
   <main>
 
-    <!-- HERO -->
+    <!-- Hero -->
     <section class="hero">
-      <div class="container">
-        <div class="hero-inner">
-          <div class="hero-content">
-            <div class="hero-badge" data-vi="Đơn vị phân phối chính hãng" data-en="Authorized Distributor in Vietnam">Đơn vị phân phối chính hãng</div>
-            <h1>
-              <span data-vi="Đơn Vị Phân Phối" data-en="Vietnam's Leading">Đơn Vị Phân Phối</span>
-              <span data-vi="Thực Phẩm Chức Năng" data-en="Health & Beauty">Thực Phẩm Chức Năng</span>
-              <span data-vi="Hàng Đầu Việt Nam" data-en="Distributor">Hàng Đầu Việt Nam</span>
-            </h1>
-            <p class="hero-sub" data-vi="Kết nối các thương hiệu sức khỏe & làm đẹp hàng đầu thế giới với thị trường Việt Nam. Đối tác tin cậy cho hàng nghìn đại lý và nhà thuốc trên toàn quốc." data-en="Connecting world-class health & beauty brands with the Vietnamese market. Your trusted distribution partner for wholesale buyers and international brand partnerships.">
-              Kết nối các thương hiệu sức khỏe & làm đẹp hàng đầu thế giới với thị trường Việt Nam. Đối tác tin cậy cho hàng nghìn đại lý và nhà thuốc trên toàn quốc.
-            </p>
-            <div class="hero-ctas">
-              <a href="wholesale.html" class="btn btn-primary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-                <span data-vi="Đăng ký làm đại lý sỉ" data-en="Become a Wholesale Partner">Đăng ký làm đại lý sỉ</span>
-              </a>
-              <a href="for-brands.html" class="btn btn-secondary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.9 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.66-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
-                <span data-vi="For Brand Partners →" data-en="For Brand Partners →">For Brand Partners →</span>
-              </a>
-            </div>
+      <div class="container hero__grid">
+        <div>
+          <span class="eyebrow">Healthy and Beauty</span>
+          <h1 class="hero__title">Đơn vị phân phối <span class="hl">thực phẩm chức năng</span> hàng đầu Việt Nam</h1>
+          <p class="hero__lead">HALOVN nhập khẩu chính hãng và phân phối hơn 500 sản phẩm từ các thương hiệu uy tín thế giới — phục vụ nhà thuốc, phòng khám, spa, gym và reseller toàn quốc.</p>
+          <div class="hero__cta">
+            <a href="wholesale.html#register" class="btn btn--primary btn--lg">Đăng ký làm đại lý sỉ →</a>
+            <a href="for-brands.html" class="btn btn--outline btn--lg">Hợp tác thương hiệu →</a>
           </div>
-
-          <div class="hero-visual">
-            <div class="hero-cards">
-              <div class="hero-card">
-                <div class="hero-card-icon" style="background:linear-gradient(135deg,#e8f7ff,#c8ecfc)">💊</div>
-                <p data-vi="500+ Sản phẩm" data-en="500+ Products">500+ Sản phẩm</p>
-                <span data-vi="chính hãng" data-en="authentic">chính hãng</span>
-              </div>
-              <div class="hero-card">
-                <div class="hero-card-icon" style="background:linear-gradient(135deg,#e8fff0,#c8f0d4)">🏥</div>
-                <p data-vi="18 Thương hiệu" data-en="18 Brands">18 Thương hiệu</p>
-                <span data-vi="phân phối" data-en="distributed">phân phối</span>
-              </div>
-              <div class="hero-card" style="grid-column:span 2">
-                <div class="hero-card-icon" style="background:linear-gradient(135deg,#fff8e8,#ffefc8);font-size:20px">🌏</div>
-                <p data-vi="Phủ rộng toàn quốc" data-en="Nationwide Coverage">Phủ rộng toàn quốc</p>
-                <span data-vi="Online + Offline" data-en="Online + Offline">Online + Offline</span>
-              </div>
-            </div>
+        </div>
+        <div class="hero__visual hero__banner" id="hero-banner" aria-label="Banner HALOVN">
+          <div class="hero__banner-track">
+            <img src="assets/images/banners/banner-1.png" alt="HALOVN banner 1" class="hero__banner-img is-active" />
+            <img src="assets/images/banners/banner-2.png" alt="HALOVN banner 2" class="hero__banner-img" loading="lazy" />
+            <img src="assets/images/banners/banner-3.png" alt="HALOVN banner 3" class="hero__banner-img" loading="lazy" />
+          </div>
+          <div class="hero__banner-dots" role="tablist" aria-label="Chọn banner">
+            <button class="hero__banner-dot is-active" data-slide="0" aria-label="Banner 1"></button>
+            <button class="hero__banner-dot" data-slide="1" aria-label="Banner 2"></button>
+            <button class="hero__banner-dot" data-slide="2" aria-label="Banner 3"></button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TRUST BAR -->
-    <section class="trust-bar">
+    <!-- Trust bar -->
+    <section class="trust">
       <div class="container">
-        <div class="trust-bar-inner">
-          <div class="trust-item">
-            <div class="trust-icon">
-              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-            </div>
-            <div>
-              <div class="trust-label" data-vi="500+ Sản Phẩm" data-en="500+ Products">500+ Sản Phẩm</div>
-              <div class="trust-desc" data-vi="Đa dạng ngành hàng" data-en="Wide category range">Đa dạng ngành hàng</div>
-            </div>
+        <div class="trust__grid">
+          <div class="trust__item reveal">
+            <div class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18l-2 12H5L3 7z"/><path d="M8 7V5a4 4 0 018 0v2"/></svg></div>
+            <div><div class="trust__num">500+</div><div class="trust__lbl">Sản phẩm</div></div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            </div>
-            <div>
-              <div class="trust-label" data-vi="Hàng Chính Hãng" data-en="100% Authentic">Hàng Chính Hãng</div>
-              <div class="trust-desc" data-vi="Có giấy ủy quyền phân phối" data-en="Authorized distributor">Có giấy ủy quyền phân phối</div>
-            </div>
+          <div class="trust__item reveal">
+            <div class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div><div class="trust__num">100%</div><div class="trust__lbl">Chính hãng</div></div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-            </div>
-            <div>
-              <div class="trust-label" data-vi="Freeship Toàn Quốc" data-en="Free Nationwide Shipping">Freeship Toàn Quốc</div>
-              <div class="trust-desc" data-vi="Đơn từ 1.000.000đ" data-en="Orders from 1,000,000 VND">Đơn từ 1.000.000đ</div>
-            </div>
+          <div class="trust__item reveal">
+            <div class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div><div class="trust__num">Freeship</div><div class="trust__lbl">Toàn quốc</div></div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon">
-              <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-            </div>
-            <div>
-              <div class="trust-label" data-vi="Hỗ Trợ 24/7" data-en="24/7 Support">Hỗ Trợ 24/7</div>
-              <div class="trust-desc" data-vi="Tư vấn khách hàng tận tâm" data-en="Dedicated customer service">Tư vấn khách hàng tận tâm</div>
-            </div>
+          <div class="trust__item reveal">
+            <div class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><div class="trust__num">24/7</div><div class="trust__lbl">Hỗ trợ</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BRANDS STRIP -->
-    <section class="brands-section reveal">
+    <!-- Brand strip -->
+    <section class="section section--light">
       <div class="container">
-        <p class="brands-title" data-vi="Thương Hiệu Chúng Tôi Phân Phối" data-en="Brands We Distribute">Thương Hiệu Chúng Tôi Phân Phối</p>
-      </div>
-      <div class="brands-track-wrap">
-        <div class="brands-track" id="brandsTrack">
-          <!-- duplicated for infinite scroll -->
-          <div class="brand-logo-card">Blackmores</div>
-          <div class="brand-logo-card">Healthy Care</div>
-          <div class="brand-logo-card">Bio Island</div>
-          <div class="brand-logo-card">Puritan's Pride</div>
-          <div class="brand-logo-card">OstroVit</div>
-          <div class="brand-logo-card">Nature Made</div>
-          <div class="brand-logo-card">BetterYou</div>
-          <div class="brand-logo-card">USOLAB</div>
-          <div class="brand-logo-card">Swisse</div>
-          <div class="brand-logo-card">NOW Foods</div>
-          <div class="brand-logo-card">Orgain</div>
-          <div class="brand-logo-card">Ostelin</div>
-          <div class="brand-logo-card">Aptamil</div>
-          <div class="brand-logo-card">Vichy</div>
-          <div class="brand-logo-card">La Roche-Posay</div>
-          <div class="brand-logo-card">Kiehl's</div>
-          <!-- duplicate -->
-          <div class="brand-logo-card">Blackmores</div>
-          <div class="brand-logo-card">Healthy Care</div>
-          <div class="brand-logo-card">Bio Island</div>
-          <div class="brand-logo-card">Puritan's Pride</div>
-          <div class="brand-logo-card">OstroVit</div>
-          <div class="brand-logo-card">Nature Made</div>
-          <div class="brand-logo-card">BetterYou</div>
-          <div class="brand-logo-card">USOLAB</div>
-          <div class="brand-logo-card">Swisse</div>
-          <div class="brand-logo-card">NOW Foods</div>
-          <div class="brand-logo-card">Orgain</div>
-          <div class="brand-logo-card">Ostelin</div>
-          <div class="brand-logo-card">Aptamil</div>
-          <div class="brand-logo-card">Vichy</div>
-          <div class="brand-logo-card">La Roche-Posay</div>
-          <div class="brand-logo-card">Kiehl's</div>
+        <div class="section-head reveal">
+          <span class="eyebrow">Thương hiệu chúng tôi phân phối</span>
+          <h2>Đối tác toàn cầu, chất lượng đảm bảo</h2>
+        </div>
+        <div class="brands">
+          <div class="brand reveal"><img src="assets/images/brands/marvis.png" alt="Marvis" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/bio-island.png" alt="Bio Island" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/healthy-care.jpg" alt="Healthy Care" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/vitatree.png" alt="Vitatree" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/optibac.jpeg" alt="Optibac" loading="lazy" /></div>
+          <div class="brand brand--lg reveal"><img src="assets/images/brands/manhae.png" alt="Manhaé" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/vagisil.png" alt="Vagisil" loading="lazy" /></div>
+          <div class="brand brand--lg reveal"><img src="assets/images/brands/betteryou.jpg" alt="BetterYou" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/nature-made.jpeg" alt="Nature Made" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/vitabiotics.webp" alt="Vitabiotics" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/happi.png" alt="HAPPi" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/neubria.webp" alt="Neubria" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/ptit-bobo.png" alt="P'tit BoBo" loading="lazy" /></div>
+          <div class="brand brand--lg reveal"><img src="assets/images/brands/usolab.png" alt="USOLAB" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/blackmores.jpg" alt="Blackmores" loading="lazy" /></div>
+          <div class="brand brand--lg reveal"><img src="assets/images/brands/ostelin.png" alt="Ostelin" loading="lazy" /></div>
         </div>
       </div>
     </section>
 
-    <!-- WHY HALOVN -->
-    <section class="why-section section">
+    <!-- Why HALOVN -->
+    <section class="section">
       <div class="container">
-        <div class="text-center">
-          <h2 class="section-title reveal" data-vi="Tại Sao Chọn <span>HALOVN</span>?" data-en="Why Partner With <span>HALOVN</span>?">Tại Sao Chọn <span>HALOVN</span>?</h2>
-          <p class="section-sub reveal reveal-delay-1" data-vi="Giải pháp phân phối toàn diện cho đại lý và nhà thuốc trên khắp Việt Nam" data-en="Comprehensive distribution solutions for wholesale partners across Vietnam">Giải pháp phân phối toàn diện cho đại lý và nhà thuốc trên khắp Việt Nam</p>
+        <div class="section-head reveal">
+          <span class="eyebrow">Tại sao chọn HALOVN</span>
+          <h2>Đối tác sỉ tin cậy cho hơn 500 sản phẩm</h2>
+          <p>Chúng tôi đồng hành cùng nhà thuốc, phòng khám, spa và reseller bằng giá tốt — hàng chính hãng — giao nhanh — hỗ trợ tận tâm.</p>
         </div>
-        <div class="why-grid">
-          <div class="why-card reveal reveal-delay-1">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-            </div>
-            <div>
-              <h3 data-vi="Giá Sỉ Cạnh Tranh" data-en="Competitive Wholesale Pricing">Giá Sỉ Cạnh Tranh</h3>
-              <p data-vi="Chiết khấu hấp dẫn theo sản lượng. Bảng giá sỉ riêng cho từng cấp đại lý, hỗ trợ tối đa lợi nhuận của bạn." data-en="Attractive volume-based discounts. Tiered pricing for different partner levels.">Chiết khấu hấp dẫn theo sản lượng. Bảng giá sỉ riêng cho từng cấp đại lý, hỗ trợ tối đa lợi nhuận của bạn.</p>
-            </div>
+        <div class="grid grid--4">
+          <div class="card reveal">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <h3>Giá sỉ cạnh tranh</h3>
+            <p>Chiết khấu theo bậc, ưu đãi riêng cho đại lý dài hạn.</p>
           </div>
-          <div class="why-card reveal reveal-delay-2">
-            <div class="why-icon" style="background:var(--green)">
-              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            </div>
-            <div>
-              <h3 data-vi="100% Hàng Chính Hãng" data-en="100% Authentic Products">100% Hàng Chính Hãng</h3>
-              <p data-vi="Nhập khẩu trực tiếp, có giấy ủy quyền từ hãng. Cam kết hoàn tiền nếu hàng không chính hãng." data-en="Direct import with authorized distributor certificates. Money-back guarantee.">Nhập khẩu trực tiếp, có giấy ủy quyền từ hãng. Cam kết hoàn tiền nếu hàng không chính hãng.</p>
-            </div>
+          <div class="card reveal card--green">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.39 0 4.68.94 6.36 2.64"/></svg></div>
+            <h3>Chính hãng 100%</h3>
+            <p>Đầy đủ giấy ủy quyền, hóa đơn VAT, tem chống giả.</p>
           </div>
-          <div class="why-card reveal reveal-delay-3">
-            <div class="why-icon" style="background:#F59E0B">
-              <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4z"/></svg>
-            </div>
-            <div>
-              <h3 data-vi="Giao Hàng Nhanh Toàn Quốc" data-en="Fast Nationwide Delivery">Giao Hàng Nhanh Toàn Quốc</h3>
-              <p data-vi="Kho hàng tại Hà Nội, giao nhanh 1-3 ngày toàn quốc. Freeship đơn sỉ từ 1 triệu đồng." data-en="Warehouse in Hanoi, 1-3 day delivery nationwide. Free shipping on wholesale orders.">Kho hàng tại Hà Nội, giao nhanh 1-3 ngày toàn quốc. Freeship đơn sỉ từ 1 triệu đồng.</p>
-            </div>
+          <div class="card reveal">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <h3>Giao nhanh toàn quốc</h3>
+            <p>Kho Hà Nội & TP.HCM. Freeship đơn từ 1 triệu đồng.</p>
           </div>
-          <div class="why-card reveal reveal-delay-4">
-            <div class="why-icon" style="background:#8B5CF6">
-              <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-            </div>
-            <div>
-              <h3 data-vi="Hỗ Trợ Kỹ Thuật Bán Hàng" data-en="Sales & Marketing Support">Hỗ Trợ Kỹ Thuật Bán Hàng</h3>
-              <p data-vi="Cung cấp hình ảnh, mô tả sản phẩm, tư vấn chiến lược bán hàng online & offline cho đại lý." data-en="Product assets, descriptions, and sales strategy consulting for distributors.">Cung cấp hình ảnh, mô tả sản phẩm, tư vấn chiến lược bán hàng online & offline cho đại lý.</p>
-            </div>
+          <div class="card reveal card--green">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+            <h3>Hỗ trợ chuyên sâu</h3>
+            <p>Tư vấn sản phẩm, tài liệu marketing, training bán hàng.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CATEGORIES -->
-    <section class="categories-section section">
+    <!-- Partner CTA -->
+    <section class="section section--light">
       <div class="container">
-        <div class="text-center">
-          <h2 class="section-title reveal" data-vi="Danh Mục <span>Sản Phẩm</span>" data-en="Product <span>Categories</span>">Danh Mục <span>Sản Phẩm</span></h2>
-          <p class="section-sub reveal reveal-delay-1" data-vi="Đầy đủ ngành hàng sức khỏe & làm đẹp" data-en="Full range of health & beauty categories">Đầy đủ ngành hàng sức khỏe & làm đẹp</p>
-        </div>
-        <div class="cat-grid">
-          <a href="products.html?cat=supplement" class="cat-card reveal reveal-delay-1">
-            <div class="cat-icon">💊</div>
-            <h4 data-vi="Thực phẩm bổ sung" data-en="Supplements">Thực phẩm bổ sung</h4>
-          </a>
-          <a href="products.html?cat=essential" class="cat-card reveal reveal-delay-2">
-            <div class="cat-icon">🥗</div>
-            <h4 data-vi="Dinh dưỡng thiết yếu" data-en="Essential Nutrition">Dinh dưỡng thiết yếu</h4>
-          </a>
-          <a href="products.html?cat=maternal" class="cat-card reveal reveal-delay-3">
-            <div class="cat-icon">🤰</div>
-            <h4 data-vi="Dinh dưỡng mẹ bầu" data-en="Maternal Nutrition">Dinh dưỡng mẹ bầu</h4>
-          </a>
-          <a href="products.html?cat=kids" class="cat-card reveal reveal-delay-4">
-            <div class="cat-icon">👶</div>
-            <h4 data-vi="Sức khỏe trẻ nhỏ" data-en="Children's Health">Sức khỏe trẻ nhỏ</h4>
-          </a>
-          <a href="products.html?cat=senior" class="cat-card reveal reveal-delay-5">
-            <div class="cat-icon">🧓</div>
-            <h4 data-vi="Người cao tuổi" data-en="Senior Health">Người cao tuổi</h4>
-          </a>
-          <a href="products.html?cat=beauty" class="cat-card reveal" style="transition-delay:0.6s">
-            <div class="cat-icon">✨</div>
-            <h4 data-vi="Chăm sóc sắc đẹp" data-en="Beauty & Skincare">Chăm sóc sắc đẹp</h4>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOR BRANDS CTA -->
-    <section class="for-brands-section">
-      <div class="container">
-        <div class="for-brands-inner">
-          <div class="for-brands-badge reveal">FOR INTERNATIONAL BRANDS</div>
-          <h2 class="reveal reveal-delay-1">Looking for a Trusted<br>Distribution Partner in Vietnam?</h2>
-          <p class="reveal reveal-delay-2">HALOVN operates an end-to-end distribution network covering online marketplaces, pharmacy chains, and retail stores across Vietnam. We handle import, logistics, marketing, and customer service — so you can focus on your brand.</p>
-          <div class="for-brands-stats reveal reveal-delay-2">
-            <div class="for-brands-stat">
-              <span class="num">500+</span>
-              <span class="lbl">SKUs Distributed</span>
-            </div>
-            <div class="for-brands-stat">
-              <span class="num">18+</span>
-              <span class="lbl">Brand Partners</span>
-            </div>
-            <div class="for-brands-stat">
-              <span class="num">63</span>
-              <span class="lbl">Provinces Covered</span>
-            </div>
-          </div>
-          <div class="for-brands-ctas reveal reveal-delay-3">
-            <a href="for-brands.html" class="btn btn-primary">Learn About Partnership</a>
-            <a href="contact.html" class="btn btn-outline-white">Contact Our Team</a>
+        <div class="partner-cta reveal">
+          <span class="eyebrow" style="color:#5dd0f6">Dành cho thương hiệu quốc tế</span>
+          <h2>Bạn đang tìm đối tác phân phối tại Việt Nam?</h2>
+          <p>HALOVN đang xây dựng mạng lưới hợp tác dài hạn với các thương hiệu quốc tế muốn gia nhập và phát triển tại thị trường sức khoẻ & làm đẹp Việt Nam.</p>
+          <div class="partner-cta__actions">
+            <a href="for-brands.html" class="btn btn--green btn--lg">Trở thành đối tác →</a>
+            <a href="for-brands.html#capabilities" class="btn btn--ghost btn--lg">Xem năng lực của chúng tôi</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PRODUCTS FEATURED -->
-    <section class="products-section section">
+    <!-- Featured products -->
+    <section class="section">
       <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:24px">
-          <div>
-            <h2 class="section-title reveal" data-vi="Sản Phẩm <span>Nổi Bật</span>" data-en="Featured <span>Products</span>">Sản Phẩm <span>Nổi Bật</span></h2>
-            <p class="section-sub reveal reveal-delay-1" style="margin-bottom:0" data-vi="Liên hệ để nhận bảng giá sỉ" data-en="Contact us for wholesale pricing">Liên hệ để nhận bảng giá sỉ</p>
-          </div>
-          <a href="products.html" class="btn btn-primary reveal" style="font-size:14px;padding:10px 20px" data-vi="Xem tất cả →" data-en="View all →">Xem tất cả →</a>
+        <div class="section-head reveal">
+          <span class="eyebrow">Danh mục sản phẩm</span>
+          <h2>Sản phẩm tiêu biểu</h2>
+          <p>Đa dạng từ thực phẩm bổ sung, dinh dưỡng mẹ & bé tới sản phẩm chăm sóc da và sắc đẹp.</p>
         </div>
-        <div class="products-tabs reveal reveal-delay-1">
-          <button class="tab-btn active" data-vi="Tất cả" data-en="All">Tất cả</button>
-          <button class="tab-btn" data-vi="Thực phẩm bổ sung" data-en="Supplements">Thực phẩm bổ sung</button>
-          <button class="tab-btn" data-vi="Mẹ & Bé" data-en="Mom & Baby">Mẹ & Bé</button>
-          <button class="tab-btn" data-vi="Người cao tuổi" data-en="Senior Health">Người cao tuổi</button>
-        </div>
-        <div class="products-grid">
-          <div class="product-card reveal reveal-delay-1">
-            <div class="product-img"><span class="product-badge" data-vi="Chính hãng" data-en="Authentic">Chính hãng</span>💊</div>
-            <div class="product-info">
-              <div class="product-brand">Puritan's Pride</div>
-              <div class="product-name" data-vi="Omega-3 Fish Oil 1200mg" data-en="Omega-3 Fish Oil 1200mg">Omega-3 Fish Oil 1200mg</div>
-              <div class="product-cta">
-                <span class="product-price-label" data-vi="Liên hệ giá sỉ" data-en="Contact for price">Liên hệ giá sỉ</span>
-                <a href="contact.html" class="product-btn" data-vi="Đặt hàng sỉ" data-en="Order wholesale">Đặt hàng sỉ</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card reveal reveal-delay-2">
-            <div class="product-img green-bg"><span class="product-badge" style="background:#39B54A">Best seller</span>🥛</div>
-            <div class="product-info">
-              <div class="product-brand">Healthy Care</div>
-              <div class="product-name" data-vi="Vitamin C 500mg 200 viên" data-en="Vitamin C 500mg 200 tablets">Vitamin C 500mg 200 viên</div>
-              <div class="product-cta">
-                <span class="product-price-label" data-vi="Liên hệ giá sỉ" data-en="Contact for price">Liên hệ giá sỉ</span>
-                <a href="contact.html" class="product-btn" data-vi="Đặt hàng sỉ" data-en="Order wholesale">Đặt hàng sỉ</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card reveal reveal-delay-3">
-            <div class="product-img orange-bg">🍼</div>
-            <div class="product-info">
-              <div class="product-brand">Bio Island</div>
-              <div class="product-name" data-vi="Milk Calcium Bone Care" data-en="Milk Calcium Bone Care">Milk Calcium Bone Care</div>
-              <div class="product-cta">
-                <span class="product-price-label" data-vi="Liên hệ giá sỉ" data-en="Contact for price">Liên hệ giá sỉ</span>
-                <a href="contact.html" class="product-btn" data-vi="Đặt hàng sỉ" data-en="Order wholesale">Đặt hàng sỉ</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card reveal reveal-delay-4">
-            <div class="product-img purple-bg">💪</div>
-            <div class="product-info">
-              <div class="product-brand">OstroVit</div>
-              <div class="product-name" data-vi="Creatine Monohydrate 500g" data-en="Creatine Monohydrate 500g">Creatine Monohydrate 500g</div>
-              <div class="product-cta">
-                <span class="product-price-label" data-vi="Liên hệ giá sỉ" data-en="Contact for price">Liên hệ giá sỉ</span>
-                <a href="contact.html" class="product-btn" data-vi="Đặt hàng sỉ" data-en="Order wholesale">Đặt hàng sỉ</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card reveal reveal-delay-5">
-            <div class="product-img">🧴</div>
-            <div class="product-info">
-              <div class="product-brand">NOW Foods</div>
-              <div class="product-name" data-vi="Vitamin D3 5000 IU 240 viên" data-en="Vitamin D3 5000 IU 240 softgels">Vitamin D3 5000 IU 240 viên</div>
-              <div class="product-cta">
-                <span class="product-price-label" data-vi="Liên hệ giá sỉ" data-en="Contact for price">Liên hệ giá sỉ</span>
-                <a href="contact.html" class="product-btn" data-vi="Đặt hàng sỉ" data-en="Order wholesale">Đặt hàng sỉ</a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card reveal" style="transition-delay:0.6s">
-            <div class="product-img pink-bg"><span class="product-badge" style="background:#E91E8C" data-vi="Mới" data-en="New">Mới</span>🌿</div>
-            <div class="product-info">
-              <div class="product-brand">Blackmores</div>
-              <div class="product-name" data-vi="Probiotics+ Immune Defence" data-en="Probiotics+ Immune Defence">Probiotics+ Immune Defence</div>
-              <div class="product-cta">
-                <span class="product-price-label" data-vi="Liên hệ giá sỉ" data-en="Contact for price">Liên hệ giá sỉ</span>
-                <a href="contact.html" class="product-btn" data-vi="Đặt hàng sỉ" data-en="Order wholesale">Đặt hàng sỉ</a>
-              </div>
-            </div>
-          </div>
+        <div class="grid grid--4" data-products-grid data-limit="4"></div>
+        <div style="text-align:center; margin-top:40px" class="reveal">
+          <a href="products.html" class="btn btn--outline">Xem toàn bộ catalog</a>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT SNIPPET -->
-    <section class="about-section section">
+    <!-- News preview -->
+    <section class="section section--light">
       <div class="container">
-        <div class="about-inner">
-          <div class="about-img reveal">🏢</div>
-          <div class="about-content">
-            <h2 class="section-title reveal" data-vi="Về <span>HALOVN</span>" data-en="About <span>HALOVN</span>">Về <span>HALOVN</span></h2>
-            <p class="reveal reveal-delay-1" data-vi="HALOVN tự hào là nhà phân phối chính hãng các thương hiệu thực phẩm chức năng hàng đầu thế giới, bao gồm Blackmores, Healthy Care, La Roche Posay, Vichy, Kiehl's và nhiều tên tuổi khác." data-en="HALOVN is an authorized distributor of world-class health & beauty brands including Blackmores, Healthy Care, La Roche Posay, Vichy, Kiehl's and many more.">
-              HALOVN tự hào là nhà phân phối chính hãng các thương hiệu thực phẩm chức năng hàng đầu thế giới, bao gồm Blackmores, Healthy Care, La Roche Posay, Vichy, Kiehl's và nhiều tên tuổi khác.
-            </p>
-            <p class="reveal reveal-delay-2" data-vi="Chúng tôi cam kết mang đến cho khách hàng trải nghiệm mua sắm đẳng cấp, nơi chất lượng sản phẩm chính hãng được ưu tiên hàng đầu, đi kèm với mức giá cạnh tranh nhất trên thị trường." data-en="We are committed to delivering authentic premium products at competitive wholesale prices, backed by professional sales support and nationwide logistics.">
-              Chúng tôi cam kết mang đến cho khách hàng trải nghiệm mua sắm đẳng cấp, nơi chất lượng sản phẩm chính hãng được ưu tiên hàng đầu, đi kèm với mức giá cạnh tranh nhất trên thị trường.
-            </p>
-            <div class="core-values reveal reveal-delay-3">
-              <div class="value-item"><div class="value-dot"></div><span data-vi="Cam kết chất lượng chính hãng" data-en="Authentic quality commitment">Cam kết chất lượng chính hãng</span></div>
-              <div class="value-item"><div class="value-dot"></div><span data-vi="Đội ngũ chuyên nghiệp" data-en="Professional team">Đội ngũ chuyên nghiệp</span></div>
-              <div class="value-item"><div class="value-dot"></div><span data-vi="Phát triển bền vững" data-en="Sustainable growth">Phát triển bền vững</span></div>
-              <div class="value-item"><div class="value-dot"></div><span data-vi="Khách hàng là trọng tâm" data-en="Customer-centric">Khách hàng là trọng tâm</span></div>
-            </div>
-            <a href="about.html" class="btn btn-primary reveal reveal-delay-4" data-vi="Tìm hiểu thêm về chúng tôi →" data-en="Learn more about us →">Tìm hiểu thêm về chúng tôi →</a>
-          </div>
+        <div class="section-head reveal">
+          <span class="eyebrow">Tin tức</span>
+          <h2>Cập nhật từ HALOVN</h2>
         </div>
-      </div>
-    </section>
-
-    <!-- NEWS -->
-    <section class="news-section section">
-      <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:40px">
-          <div>
-            <h2 class="section-title reveal" data-vi="Tin Tức & <span>Sự Kiện</span>" data-en="News & <span>Updates</span>">Tin Tức & <span>Sự Kiện</span></h2>
-          </div>
-          <a href="news.html" class="btn btn-secondary reveal" style="font-size:14px;padding:10px 20px;border-width:1.5px" data-vi="Xem tất cả →" data-en="View all →">Xem tất cả →</a>
-        </div>
-        <div class="news-grid">
-          <article class="news-card reveal reveal-delay-1">
-            <div class="news-img">🎉</div>
-            <div class="news-body">
-              <span class="news-tag" data-vi="Sự kiện" data-en="Event">Sự kiện</span>
-              <h3 class="news-title" data-vi="Year End Party – Không chỉ là tiệc tất niên mà còn là chiến lược giữ chân nhân tài" data-en="Year End Party – More than a celebration, a talent retention strategy">Year End Party – Không chỉ là tiệc tất niên mà còn là chiến lược giữ chân nhân tài</h3>
-              <p class="news-date">15/01/2025</p>
-            </div>
-          </article>
-          <article class="news-card reveal reveal-delay-2">
-            <div class="news-img">📈</div>
-            <div class="news-body">
-              <span class="news-tag" data-vi="Thị trường" data-en="Market">Thị trường</span>
-              <h3 class="news-title" data-vi="Năm 2025: Thương mại điện tử là động lực tăng trưởng chính của ngành FMCG" data-en="2025: E-commerce drives FMCG growth in Vietnam">Năm 2025: Thương mại điện tử là động lực tăng trưởng chính của ngành FMCG</h3>
-              <p class="news-date">10/01/2025</p>
-            </div>
-          </article>
-          <article class="news-card reveal reveal-delay-3">
-            <div class="news-img">🎓</div>
-            <div class="news-body">
-              <span class="news-tag" data-vi="Đào tạo" data-en="Training">Đào tạo</span>
-              <h3 class="news-title" data-vi="Phát triển không giới hạn cùng HALOVN – nơi văn hóa đưa bạn đến tầm cao mới" data-en="Unlimited growth with HALOVN – a culture that elevates you">Phát triển không giới hạn cùng HALOVN – nơi văn hóa đưa bạn đến tầm cao mới</h3>
-              <p class="news-date">05/01/2025</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEWSLETTER -->
-    <section class="newsletter-section">
-      <div class="container">
-        <div class="newsletter-inner reveal">
-          <h2 data-vi="Nhận Bảng Giá Sỉ Mới Nhất" data-en="Get Our Latest Wholesale Catalog">Nhận Bảng Giá Sỉ Mới Nhất</h2>
-          <p data-vi="Đăng ký để nhận bảng giá sỉ cập nhật và thông tin sản phẩm mới từ HALOVN" data-en="Subscribe to receive updated wholesale pricing and new product announcements">Đăng ký để nhận bảng giá sỉ cập nhật và thông tin sản phẩm mới từ HALOVN</p>
-          <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-            <input type="email" placeholder="Email của bạn" required aria-label="Email">
-            <button type="submit" data-vi="Đăng ký" data-en="Subscribe">Đăng ký</button>
-          </form>
+        <!-- Render động từ news-data.js — chỉ hiện 3 bài mới nhất -->
+        <div class="grid grid--3" data-news-grid data-limit="3"></div>
+        <div style="text-align:center; margin-top:32px" class="reveal">
+          <a href="news.html" class="btn btn--outline">Xem tất cả tin tức →</a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-main">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="logo-name">Halo<span class="vn" style="background:var(--green);color:white;border-radius:4px;padding:0 4px;font-size:20px">vn</span></div>
-            <div class="logo-tagline" style="color:rgba(255,255,255,0.5);font-size:11px;letter-spacing:0.5px;margin-top:2px">HEALTHY AND BEAUTY</div>
-            <p data-vi="Nhà phân phối chính hãng thực phẩm chức năng và sản phẩm sức khỏe & làm đẹp hàng đầu tại Việt Nam." data-en="Authorized distributor of premium health & beauty products in Vietnam.">Nhà phân phối chính hãng thực phẩm chức năng và sản phẩm sức khỏe & làm đẹp hàng đầu tại Việt Nam.</p>
-            <div class="footer-social">
-              <a href="#" class="social-btn" aria-label="Facebook">f</a>
-              <a href="#" class="social-btn" aria-label="YouTube">▶</a>
-              <a href="#" class="social-btn" aria-label="Zalo">Z</a>
-            </div>
-          </div>
-
-          <div class="footer-col">
-            <h4 data-vi="Về chúng tôi" data-en="Company">Về chúng tôi</h4>
-            <ul>
-              <li><a href="about.html" data-vi="Giới thiệu" data-en="About Us">Giới thiệu</a></li>
-              <li><a href="wholesale.html" data-vi="Chính sách sỉ" data-en="Wholesale Policy">Chính sách sỉ</a></li>
-              <li><a href="for-brands.html" data-vi="For Brands" data-en="For Brands">For Brands</a></li>
-              <li><a href="news.html" data-vi="Tin tức" data-en="News">Tin tức</a></li>
-              <li><a href="contact.html" data-vi="Liên hệ" data-en="Contact">Liên hệ</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h4 data-vi="Chính sách" data-en="Policies">Chính sách</h4>
-            <ul>
-              <li><a href="#" data-vi="Cách thức mua hàng" data-en="How to Order">Cách thức mua hàng</a></li>
-              <li><a href="#" data-vi="Chính sách đổi trả" data-en="Return Policy">Chính sách đổi trả</a></li>
-              <li><a href="#" data-vi="Chính sách bảo mật" data-en="Privacy Policy">Chính sách bảo mật</a></li>
-              <li><a href="#" data-vi="Điều khoản sử dụng" data-en="Terms of Service">Điều khoản sử dụng</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-col">
-            <h4 data-vi="Liên hệ" data-en="Contact Us">Liên hệ</h4>
-            <div class="footer-contact-item">
-              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              <span>282 Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</span>
-            </div>
-            <div class="footer-contact-item">
-              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-              <a href="tel:0865565633">0865 565 633</a>
-            </div>
-            <div class="footer-contact-item">
-              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              <a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a>
-            </div>
-            <div class="footer-contact-item">
-              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
-              <span data-vi="Thứ 2 – Thứ 7, 8h–18h30" data-en="Mon – Sat, 8am–6:30pm">Thứ 2 – Thứ 7, 8h–18h30</span>
-            </div>
-          </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="assets/images/logo/logo.png" alt="HALOVN" />
+          <p>Công ty TNHH HALOVN — Đơn vị nhập khẩu và phân phối chính hãng thực phẩm chức năng, sản phẩm chăm sóc sức khỏe và sắc đẹp tại Việt Nam.</p>
+        </div>
+        <div>
+          <h4>Liên kết</h4>
+          <ul>
+            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="products.html">Sản phẩm</a></li>
+            <li><a href="wholesale.html">Chính sách sỉ</a></li>
+            <li><a href="for-brands.html">Hợp tác thương hiệu</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Hỗ trợ</h4>
+          <ul>
+            <li><a href="contact.html">Liên hệ</a></li>
+            <li><a href="news.html">Tin tức</a></li>
+            <li><a href="wholesale.html#register">Đăng ký đại lý</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Liên hệ</h4>
+          <ul class="footer__contact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 58 NV1 Tổng Cục 5, Tân Triều, Thanh Trì, Hà Nội</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> 0818 685 222</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> admin@halo.com.vn</li>
+          </ul>
         </div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <span data-vi="Bản quyền thuộc về Công ty TNHH HALOVN ©2025" data-en="© 2025 HALOVN Co., Ltd. All rights reserved.">Bản quyền thuộc về Công ty TNHH HALOVN ©2025</span>
+      <div class="footer__bottom">
+        <span>© <span id="year"></span> Công ty TNHH HALOVN. All rights reserved.</span>
+        <span>Healthy and Beauty</span>
       </div>
     </div>
   </footer>
+  <script src="assets/js/cart-store.js"></script>
 
-  <!-- SCROLL TO TOP -->
-  <button class="scroll-top" id="scrollTop" aria-label="Về đầu trang">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
-  </button>
-
-  <script>
-    // ===== INTERSECTION OBSERVER — SCROLL ANIMATIONS =====
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
-
-    // ===== HAMBURGER MOBILE MENU =====
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileNav.classList.toggle('open');
-    });
-    // close on link click
-    mobileNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileNav.classList.remove('open');
-      });
-    });
-
-    // ===== LANGUAGE TOGGLE =====
-    const langBtns = document.querySelectorAll('.lang-toggle button');
-    let currentLang = 'vi';
-    function applyLang(lang) {
-      currentLang = lang;
-      document.documentElement.lang = lang;
-      document.querySelectorAll('[data-vi]').forEach(el => {
-        const txt = el.getAttribute('data-' + lang);
-        if (txt) el.innerHTML = txt;
-      });
-      // update newsletter placeholder
-      const emailInput = document.querySelector('.newsletter-form input[type="email"]');
-      if (emailInput) emailInput.placeholder = lang === 'en' ? 'Your email address' : 'Email của bạn';
-    }
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        langBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        applyLang(btn.dataset.lang);
-      });
-    });
-
-    // ===== PRODUCT TABS =====
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-
-    // ===== NEWSLETTER =====
-    function handleNewsletter(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = currentLang === 'en' ? 'Subscribed! ✓' : 'Đã đăng ký! ✓';
-      btn.style.background = 'var(--green)';
-      setTimeout(() => {
-        btn.textContent = currentLang === 'en' ? 'Subscribe' : 'Đăng ký';
-        btn.style.background = '';
-        e.target.reset();
-      }, 3000);
-    }
-
-    // ===== SCROLL TO TOP =====
-    const scrollTopBtn = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
-    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // ===== STICKY HEADER SHADOW =====
-    const headerEl = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-      headerEl.style.boxShadow = window.scrollY > 10
-        ? '0 2px 20px rgba(0,0,0,0.12)'
-        : '0 2px 12px rgba(0,0,0,0.06)';
-    }, { passive: true });
-  </script>
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/products-list.js"></script>
+  <script src="assets/js/news-data.js"></script>
+  <script src="assets/js/news-page.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

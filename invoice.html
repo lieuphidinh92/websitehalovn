@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hoá đơn — HALOVN</title>
+  <meta name="description" content="Hoá đơn đặt hàng tại HALOVN." />
+  <link rel="icon" href="assets/images/logo/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <header class="header no-print">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><img src="assets/images/logo/logo.png" alt="HALOVN logo" /></a>
+      <nav class="nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="about.html">Giới thiệu</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="wholesale.html">Chính sách sỉ</a>
+        <a href="for-brands.html">Hợp tác thương hiệu</a>
+        <a href="news.html">Tin tức</a>
+        <a href="contact.html">Liên hệ</a>
+      </nav>
+      <a href="cart.html" class="cart-link" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge is-empty" data-cart-count>0</span>
+      </a>
+      <a href="wholesale.html#register" class="btn btn--primary header__cta">Đăng ký đại lý</a>
+      <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-nav no-print">
+    <a href="index.html">Trang chủ</a>
+    <a href="products.html">Sản phẩm</a>
+    <a href="cart.html">Giỏ hàng</a>
+    <a href="contact.html">Liên hệ</a>
+  </div>
+
+  <main class="container" id="invoice-root" style="padding-top: 16px">
+    <p style="padding: 60px 0; text-align:center; color:var(--c-muted)">Đang tải hoá đơn…</p>
+  </main>
+
+  <footer class="footer no-print">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© <span id="year"></span> Công ty TNHH HALOVN. All rights reserved.</span>
+        <span>Healthy and Beauty</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/cart-store.js"></script>
+  <script src="assets/js/invoice-page.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

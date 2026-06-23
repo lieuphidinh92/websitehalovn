@@ -1,387 +1,308 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Brand Partners – HALOVN | Vietnam Distribution Partner</title>
-  <meta name="description" content="Partner with HALOVN to enter Vietnam's $1.2B health & beauty market. Authorized distribution, full regulatory support, and multi-channel sales capabilities.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* FOR-BRANDS specific — all English, more corporate tone */
-    .hero-brands { background: linear-gradient(160deg, var(--navy) 0%, #1e3557 50%, #243f6e 100%); min-height: 520px; display: flex; align-items: center; position: relative; overflow: hidden; }
-    .hero-brands::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300AEEF' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-    .hero-brands .container { position: relative; z-index: 1; padding-top: 80px; padding-bottom: 80px; }
-    .hero-brands-inner { max-width: 720px; }
-    .hero-brands-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,174,239,0.2); border: 1px solid rgba(0,174,239,0.4); border-radius: 20px; padding: 6px 14px; font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 20px; }
-    .hero-brands h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 800; color: white; line-height: 1.15; margin-bottom: 16px; }
-    .hero-brands h1 span { color: var(--blue); }
-    .hero-brands p { font-size: clamp(15px, 2vw, 18px); color: rgba(255,255,255,0.78); line-height: 1.7; margin-bottom: 32px; max-width: 600px; }
-    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
-    .hero-stat { text-align: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 12px; }
-    .hero-stat-num { font-size: clamp(22px, 4vw, 32px); font-weight: 800; color: var(--blue); }
-    .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
-    .why-vn-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-    .why-vn-card { background: var(--grey-light); border-radius: var(--radius); padding: 24px; border-left: 4px solid var(--blue); }
-    .why-vn-card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-    .why-vn-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
-    .capability-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-    .capability-card { border: 1.5px solid var(--grey-mid); border-radius: var(--radius); padding: 24px; transition: all var(--transition); }
-    .capability-card:hover { border-color: var(--blue); box-shadow: 0 8px 24px rgba(0,174,239,0.1); }
-    .cap-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--blue), #0093cc); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-    .cap-icon svg { width: 24px; height: 24px; fill: white; }
-    .capability-card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-    .capability-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
-    .process-timeline { position: relative; }
-    .process-timeline::before { content: ''; position: absolute; left: 22px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--blue), transparent); }
-    .timeline-step { display: flex; gap: 20px; margin-bottom: 32px; position: relative; }
-    .timeline-dot { width: 44px; height: 44px; border-radius: 50%; background: var(--blue); color: white; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1; box-shadow: 0 0 0 4px rgba(0,174,239,0.15); }
-    .timeline-content { padding-top: 8px; }
-    .timeline-content h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-    .timeline-content p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-    .brands-showcase { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .brand-showcase-card { background: var(--white); border: 1.5px solid var(--grey-mid); border-radius: 12px; padding: 16px; text-align: center; font-weight: 700; font-size: 13px; color: var(--navy); transition: all var(--transition); }
-    .brand-showcase-card:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
-    .partner-form { background: var(--white); border: 1.5px solid var(--grey-mid); border-radius: var(--radius); padding: 36px; }
-    .partner-form h3 { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
-    .partner-form p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
-    .form-row { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label { font-size: 13px; font-weight: 700; color: var(--navy); }
-    .form-group input, .form-group select, .form-group textarea { border: 1.5px solid var(--grey-mid); border-radius: 8px; padding: 11px 14px; font-size: 14px; font-family: inherit; color: var(--text); outline: none; transition: border-color var(--transition); background: var(--white); }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,174,239,0.1); }
-    .form-group textarea { min-height: 120px; resize: vertical; }
-    .channels-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .channel-pill { border: 1.5px solid var(--grey-mid); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--navy); }
-    .channel-pill .ch-icon { font-size: 22px; }
-    .cta-partner-band { background: linear-gradient(135deg, var(--blue), #0093cc); border-radius: var(--radius); padding: 40px; text-align: center; }
-    .cta-partner-band h2 { color: white; font-size: clamp(20px, 3vw, 30px); font-weight: 800; margin-bottom: 10px; }
-    .cta-partner-band p { color: rgba(255,255,255,0.85); font-size: 15px; margin-bottom: 28px; }
-    @media (min-width: 768px) {
-      .why-vn-grid { grid-template-columns: 1fr 1fr; }
-      .capability-grid { grid-template-columns: repeat(2, 1fr); }
-      .form-row { grid-template-columns: 1fr 1fr; }
-      .brands-showcase { grid-template-columns: repeat(4, 1fr); }
-      .channels-grid { grid-template-columns: repeat(4, 1fr); }
-      .hero-stats { gap: 24px; }
-    }
-    @media (min-width: 1024px) { .capability-grid { grid-template-columns: repeat(3, 1fr); } }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hợp tác thương hiệu — Đối tác phân phối tin cậy tại Việt Nam | HALOVN</title>
+  <meta name="description" content="HALOVN là đơn vị nhập khẩu và phân phối hàng đầu các thương hiệu sức khoẻ và làm đẹp tại Việt Nam. Hợp tác cùng chúng tôi để gia nhập và phát triển tại thị trường Việt Nam." />
+  <meta property="og:title" content="HALOVN — Đối tác phân phối tại Việt Nam" />
+  <link rel="icon" href="assets/images/logo/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <div class="top-bar" style="background:var(--navy)">
-    <div class="container"><div class="top-bar-inner">
-      <div class="top-bar-contact" style="color:rgba(255,255,255,0.75)">
-        <span style="color:rgba(255,255,255,0.75)"><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:0865565633" style="color:rgba(255,255,255,0.75)">+84 865 565 633</a></span>
-        <span style="color:rgba(255,255,255,0.75)"><svg width="14" height="14" viewBox="0 0 24 24" fill="#00AEEF"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn" style="color:rgba(255,255,255,0.75)">admin@halo.com.vn</a></span>
-        <span style="color:rgba(255,255,255,0.6)">Mon – Sat | 8:00 – 18:30 ICT</span>
-      </div>
-      <div class="lang-toggle">
-        <button data-lang="vi" onclick="window.location.href='index.html'">VI</button>
-        <button class="active" data-lang="en">EN</button>
-      </div>
-    </div></div>
-  </div>
-  <header style="background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.08)">
-    <div class="container"><div class="header-main">
-      <a href="index.html" class="logo">
-        <img src="Logo.png" alt="HALOVN" height="48" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div style="display:none;flex-direction:column"><span class="logo-name" style="color:white">Halo<span class="vn">vn</span></span><span class="logo-tagline" style="color:rgba(255,255,255,0.6)">Healthy and Beauty</span></div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo"><img src="assets/images/logo/logo.png" alt="HALOVN logo" /></a>
+      <nav class="nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="about.html">Giới thiệu</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="wholesale.html">Chính sách sỉ</a>
+        <a href="for-brands.html">Hợp tác thương hiệu</a>
+        <a href="news.html">Tin tức</a>
+        <a href="contact.html">Liên hệ</a>
+      </nav>
+      <a href="cart.html" class="cart-link" aria-label="Giỏ hàng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge is-empty" data-cart-count>0</span>
       </a>
-      <a href="tel:0865565633" class="mobile-hotline" style="align-items:center;gap:6px;font-weight:700;color:var(--blue);font-size:14px"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>+84 865 565 633</a>
-      <button class="hamburger" id="hamburger" style="--line-color:white"><span style="background:white"></span><span style="background:white"></span><span style="background:white"></span></button>
-    </div></div>
-    <nav class="nav" style="background:rgba(0,0,0,0.25)"><div class="container"><div class="nav-inner nav-desktop" style="color:rgba(255,255,255,0.8)">
-      <a href="index.html" style="color:rgba(255,255,255,0.7)">Home</a>
-      <a href="about.html" style="color:rgba(255,255,255,0.7)">About Us</a>
-      <a href="products.html" style="color:rgba(255,255,255,0.7)">Products</a>
-      <a href="wholesale.html" style="color:rgba(255,255,255,0.7)">Wholesale</a>
-      <a href="news.html" style="color:rgba(255,255,255,0.7)">News</a>
-      <a href="contact.html" style="color:rgba(255,255,255,0.7)">Contact</a>
-      <a href="for-brands.html" class="nav-highlight active">For Brands 🌐</a>
-    </div></div></nav>
-    <nav class="mobile-nav" id="mobileNav" style="background:var(--navy)">
-      <a href="index.html" style="color:rgba(255,255,255,0.8)">Home</a>
-      <a href="about.html" style="color:rgba(255,255,255,0.8)">About</a>
-      <a href="products.html" style="color:rgba(255,255,255,0.8)">Products</a>
-      <a href="wholesale.html" style="color:rgba(255,255,255,0.8)">Wholesale</a>
-      <a href="news.html" style="color:rgba(255,255,255,0.8)">News</a>
-      <a href="contact.html" style="color:rgba(255,255,255,0.8)">Contact</a>
-      <a href="for-brands.html" class="nav-highlight active">For Brands 🌐</a>
-    </nav>
+      <a href="#partner-form" class="btn btn--primary header__cta">Trở thành đối tác</a>
+      <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
   </header>
 
+  <div class="mobile-nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="about.html">Giới thiệu</a>
+    <a href="products.html">Sản phẩm</a>
+    <a href="wholesale.html">Chính sách sỉ</a>
+    <a href="for-brands.html">Hợp tác thương hiệu</a>
+    <a href="news.html">Tin tức</a>
+    <a href="contact.html">Liên hệ</a>
+    <a href="cart.html">Giỏ hàng</a>
+    <a href="#partner-form" class="btn btn--primary">Trở thành đối tác</a>
+  </div>
+
   <main>
-    <!-- HERO -->
-    <section class="hero-brands">
+
+    <section class="page-head">
       <div class="container">
-        <div class="hero-brands-inner">
-          <div class="hero-brands-badge">🌐 International Brand Partnerships</div>
-          <h1>Your Trusted Distribution<br>Partner in <span>Vietnam</span></h1>
-          <p>HALOVN brings world-class health & beauty brands to Vietnam's 98 million consumers through a professional multi-channel distribution network, full regulatory support, and dedicated brand management.</p>
-          <div style="display:flex;gap:14px;flex-wrap:wrap">
-            <a href="#partner-form" class="btn btn-primary" style="font-size:15px;padding:14px 28px">Become a Partner</a>
-            <a href="#capabilities" class="btn btn-outline-white" style="font-size:15px;padding:14px 28px">Our Capabilities</a>
-          </div>
-          <div class="hero-stats">
-            <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-label">Products Distributed</div></div>
-            <div class="hero-stat"><div class="hero-stat-num">16+</div><div class="hero-stat-label">International Brands</div></div>
-            <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-label">Brand Support</div></div>
-          </div>
-        </div>
+        <span class="eyebrow" style="color:#5dd0f6">Dành cho thương hiệu quốc tế</span>
+        <h1>Đối tác phân phối tin cậy tại Việt Nam</h1>
+        <p>HALOVN đồng hành cùng các thương hiệu sức khoẻ và làm đẹp toàn cầu gia nhập, bản địa hoá và phát triển tại một trong những thị trường tăng trưởng nhanh nhất Đông Nam Á.</p>
       </div>
     </section>
 
-    <!-- WHY VIETNAM -->
+    <!-- Vì sao chọn Việt Nam -->
     <section class="section">
       <div class="container">
-        <div class="text-center">
-          <h2 class="section-title reveal">Why <span>Vietnam</span>?</h2>
-          <p class="section-sub reveal reveal-delay-1">One of Southeast Asia's fastest-growing health & wellness markets</p>
-        </div>
-        <div class="why-vn-grid">
-          <div class="why-vn-card reveal reveal-delay-1">
-            <h4>📈 $1.2B Market by 2027</h4>
-            <p>Vietnam's nutraceutical and health supplement market is projected to reach USD 1.2 billion by 2027, growing at ~12% CAGR driven by rising health awareness and a growing middle class.</p>
+        <div class="two-col">
+          <div class="reveal">
+            <span class="eyebrow">Vì sao chọn Việt Nam</span>
+            <h2>Thị trường hơn 100 triệu người tiêu dùng, tăng trưởng hai chữ số</h2>
+            <p>Ngành sức khoẻ và làm đẹp tại Việt Nam được dự báo tăng trưởng trên 11%/năm đến năm 2030, nhờ tầng lớp trung lưu trẻ, đô thị hoá nhanh và xu hướng chi tiêu cho các sản phẩm sức khoẻ — làm đẹp — thực phẩm bổ sung cao cấp.</p>
+            <ul class="check-list">
+              <li>Hơn 100 triệu dân, độ tuổi trung bình 32</li>
+              <li>Thương mại điện tử bùng nổ (Shopee, Lazada, TikTok Shop)</li>
+              <li>Nhu cầu sản phẩm nhập khẩu, có chứng nhận tăng mạnh</li>
+              <li>Khung pháp lý nhập khẩu FMCG ổn định, minh bạch</li>
+            </ul>
           </div>
-          <div class="why-vn-card reveal reveal-delay-2" style="border-color:var(--green)">
-            <h4>👥 98 Million Consumers</h4>
-            <p>A young, urbanizing population with 70% under 45 years old. Consumer spending on health & beauty is growing 3x faster than general FMCG categories.</p>
-          </div>
-          <div class="why-vn-card reveal reveal-delay-3" style="border-color:#F59E0B">
-            <h4>🛒 E-commerce Explosion</h4>
-            <p>Vietnam's e-commerce grew 25% in 2024. Shopee, Lazada, and TikTok Shop are primary channels for health products, with brand authenticity being a key purchase driver.</p>
-          </div>
-          <div class="why-vn-card reveal reveal-delay-4" style="border-color:#8B5CF6">
-            <h4>🏥 Premium Brand Preference</h4>
-            <p>Vietnamese consumers strongly prefer imported, certified brands. Foreign-origin products command 40-60% price premium over domestic equivalents, especially in pharmaceuticals and supplements.</p>
+          <div class="two-col__media reveal">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="300" fill="#F5F7FA"/>
+              <g transform="translate(40,60)">
+                <rect x="0" y="120" width="40" height="60" fill="#00AEEF"/>
+                <rect x="60" y="90" width="40" height="90" fill="#00AEEF"/>
+                <rect x="120" y="60" width="40" height="120" fill="#00AEEF"/>
+                <rect x="180" y="30" width="40" height="150" fill="#39B54A"/>
+                <rect x="240" y="10" width="40" height="170" fill="#39B54A"/>
+                <text x="20" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#6B7280">'22</text>
+                <text x="80" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#6B7280">'23</text>
+                <text x="140" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#6B7280">'24</text>
+                <text x="200" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#6B7280">'25</text>
+                <text x="260" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#6B7280">'26</text>
+              </g>
+              <text x="200" y="40" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#1A2B4A">Thị trường Wellness Việt Nam — CAGR 11%+</text>
+            </svg>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- WHY HALOVN -->
-    <section class="section" style="background:var(--grey-light)" id="capabilities">
+    <!-- Năng lực HALOVN -->
+    <section class="section section--light" id="capabilities">
       <div class="container">
-        <div class="text-center">
-          <h2 class="section-title reveal">Why Choose <span>HALOVN</span>?</h2>
-          <p class="section-sub reveal reveal-delay-1">We provide end-to-end distribution services — from import clearance to last-mile delivery</p>
+        <div class="section-head reveal">
+          <span class="eyebrow">Vì sao chọn HALOVN</span>
+          <h2>Năng lực trọn gói để đưa thương hiệu của bạn ra thị trường</h2>
+          <p>Từ nhập khẩu — thông quan đến xây dựng thương hiệu và bán hàng đa kênh — chúng tôi đảm nhận toàn bộ chuỗi phân phối.</p>
         </div>
-        <div class="capability-grid">
-          <div class="capability-card reveal reveal-delay-1">
-            <div class="cap-icon"><svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 19.67L5.71 21l1-1.9A4.49 4.49 0 0 0 8 19c6 0 6-3 12-3l-1.36-3.05C17.89 11.7 17.5 9.8 17 8z"/></svg></div>
-            <h4>Regulatory & Import Expertise</h4>
-            <p>Full support for product registration with MARD & MOH, import license, labeling localization, and customs clearance. We handle all Vietnamese regulatory requirements end-to-end.</p>
+        <div class="grid grid--3">
+          <div class="card reveal">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg></div>
+            <h3>Nhập khẩu & pháp lý</h3>
+            <p>Đơn vị nhập khẩu có giấy phép, đội ngũ pháp lý nội bộ, kinh nghiệm công bố sản phẩm và thông quan.</p>
           </div>
-          <div class="capability-card reveal reveal-delay-2">
-            <div class="cap-icon" style="background:linear-gradient(135deg,var(--green),#2da64a)"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
-            <h4>Dedicated Brand Management</h4>
-            <p>A dedicated account manager for your brand, with monthly performance reports, market feedback, competitor analysis, and localized marketing strategy recommendations.</p>
+          <div class="card reveal card--green">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <h3>Bán hàng đa kênh</h3>
+            <p>Website, Shopee, Lazada, TikTok Shop, chuỗi nhà thuốc hiện đại và phòng khám.</p>
           </div>
-          <div class="capability-card reveal reveal-delay-3">
-            <div class="cap-icon" style="background:linear-gradient(135deg,#F59E0B,#d97706)"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96C5 16.1 6.9 18 8.82 18H20v-2H9.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63H17c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 21.46 5H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
-            <h4>Multi-Channel Sales Network</h4>
-            <p>Simultaneous presence across online (halo.com.vn, Shopee, Lazada, TikTok Shop) and offline (pharmacies, clinics, gyms) channels, ensuring maximum market coverage.</p>
+          <div class="card reveal">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <h3>Kho bãi & logistics</h3>
+            <p>Kho tại Hà Nội và TP. Hồ Chí Minh, mạng lưới giao hàng toàn quốc trong 1–3 ngày.</p>
           </div>
-          <div class="capability-card reveal reveal-delay-4">
-            <div class="cap-icon" style="background:linear-gradient(135deg,#8B5CF6,#6d28d9)"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
-            <h4>Brand Localization Support</h4>
-            <p>Professional translation, Vietnamese packaging adaptation, culturally-relevant marketing content, KOL/influencer partnerships, and PR for brand launch and awareness campaigns.</p>
+          <div class="card reveal card--green">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+            <h3>Bản địa hoá thương hiệu</h3>
+            <p>Nhãn phụ tiếng Việt, nội dung marketing và truyền thông phù hợp với hành vi người tiêu dùng địa phương.</p>
           </div>
-          <div class="capability-card reveal reveal-delay-5">
-            <div class="cap-icon" style="background:linear-gradient(135deg,#EF4444,#b91c1c)"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
-            <h4>Warehousing & Logistics</h4>
-            <p>Climate-controlled warehousing in Hanoi, integrated with nationwide logistics partners. Cold-chain capable for sensitive products. Average delivery 2-3 days across Vietnam.</p>
+          <div class="card reveal">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 12l3-3 4 4 5-5"/></svg></div>
+            <h3>Marketing dữ liệu</h3>
+            <p>Performance marketing, chiến dịch KOL/KOC và phân tích dữ liệu để tăng trưởng theo ngành hàng.</p>
           </div>
-          <div class="capability-card reveal reveal-delay-1">
-            <div class="cap-icon" style="background:linear-gradient(135deg,#06B6D4,#0891b2)"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
-            <h4>Professional Sales Team</h4>
-            <p>Over 20 trained sales and customer service staff specializing in health & beauty. Regular product training, market intelligence reports, and proactive retailer relationship management.</p>
+          <div class="card reveal card--green">
+            <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <h3>Đội ngũ chuyên trách</h3>
+            <p>Mỗi thương hiệu đối tác có một Brand Manager riêng — đầu mối duy nhất, trách nhiệm rõ ràng.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SALES CHANNELS -->
+    <!-- Đối tác hiện tại -->
     <section class="section">
       <div class="container">
-        <div class="text-center">
-          <h2 class="section-title reveal">Our <span>Sales Channels</span></h2>
-          <p class="section-sub reveal reveal-delay-1">Comprehensive market coverage — online and offline</p>
+        <div class="section-head reveal">
+          <span class="eyebrow">Được tin tưởng bởi</span>
+          <h2>Các thương hiệu HALOVN đang phân phối</h2>
         </div>
-        <div class="channels-grid">
-          <div class="channel-pill reveal reveal-delay-1"><span class="ch-icon">🛒</span><div><div style="font-weight:700;font-size:13px">Shopee</div><div style="font-size:11px;color:var(--muted)">Top health & beauty store</div></div></div>
-          <div class="channel-pill reveal reveal-delay-2"><span class="ch-icon">📦</span><div><div style="font-weight:700;font-size:13px">Lazada</div><div style="font-size:11px;color:var(--muted)">Official brand store</div></div></div>
-          <div class="channel-pill reveal reveal-delay-3"><span class="ch-icon">📱</span><div><div style="font-weight:700;font-size:13px">TikTok Shop</div><div style="font-size:11px;color:var(--muted)">Live commerce & content</div></div></div>
-          <div class="channel-pill reveal reveal-delay-4"><span class="ch-icon">🌐</span><div><div style="font-weight:700;font-size:13px">halo.com.vn</div><div style="font-size:11px;color:var(--muted)">Own D2C website</div></div></div>
-          <div class="channel-pill reveal reveal-delay-1"><span class="ch-icon">💊</span><div><div style="font-weight:700;font-size:13px">Pharmacies</div><div style="font-size:11px;color:var(--muted)">Nationwide network</div></div></div>
-          <div class="channel-pill reveal reveal-delay-2"><span class="ch-icon">🏋️</span><div><div style="font-weight:700;font-size:13px">Gyms & Clinics</div><div style="font-size:11px;color:var(--muted)">B2B distribution</div></div></div>
-          <div class="channel-pill reveal reveal-delay-3"><span class="ch-icon">✨</span><div><div style="font-weight:700;font-size:13px">Spas & Salons</div><div style="font-size:11px;color:var(--muted)">Beauty channel partners</div></div></div>
-          <div class="channel-pill reveal reveal-delay-4"><span class="ch-icon">🏪</span><div><div style="font-weight:700;font-size:13px">Resellers</div><div style="font-size:11px;color:var(--muted)">200+ active resellers</div></div></div>
+        <div class="brands">
+          <div class="brand reveal"><img src="assets/images/brands/marvis.png" alt="Marvis" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/bio-island.png" alt="Bio Island" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/healthy-care.jpg" alt="Healthy Care" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/vitatree.png" alt="Vitatree" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/optibac.jpeg" alt="Optibac" loading="lazy" /></div>
+          <div class="brand brand--lg reveal"><img src="assets/images/brands/manhae.png" alt="Manhaé" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/vagisil.png" alt="Vagisil" loading="lazy" /></div>
+          <div class="brand brand--lg reveal"><img src="assets/images/brands/betteryou.jpg" alt="BetterYou" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/nature-made.jpeg" alt="Nature Made" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/vitabiotics.webp" alt="Vitabiotics" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/happi.png" alt="HAPPi" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/neubria.webp" alt="Neubria" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/ptit-bobo.png" alt="P'tit BoBo" loading="lazy" /></div>
+          <div class="brand brand--lg reveal"><img src="assets/images/brands/usolab.png" alt="USOLAB" loading="lazy" /></div>
+          <div class="brand reveal"><img src="assets/images/brands/blackmores.jpg" alt="Blackmores" loading="lazy" /></div>
+          <div class="brand brand--lg reveal"><img src="assets/images/brands/ostelin.png" alt="Ostelin" loading="lazy" /></div>
         </div>
       </div>
     </section>
 
-    <!-- CURRENT BRANDS -->
-    <section class="section" style="background:var(--grey-light)">
+    <!-- Thống kê -->
+    <section class="section section--navy">
       <div class="container">
-        <div class="text-center">
-          <h2 class="section-title reveal">Brands We <span>Currently Distribute</span></h2>
-          <p class="section-sub reveal reveal-delay-1">Trusted by leading global brands — we know how to represent your product with integrity</p>
-        </div>
-        <div class="brands-showcase">
-          <div class="brand-showcase-card reveal reveal-delay-1">Blackmores<br><span style="font-size:10px;font-weight:400;color:var(--muted)">Australia</span></div>
-          <div class="brand-showcase-card reveal reveal-delay-1">Healthy Care<br><span style="font-size:10px;font-weight:400;color:var(--muted)">Australia</span></div>
-          <div class="brand-showcase-card reveal reveal-delay-2">Bio Island<br><span style="font-size:10px;font-weight:400;color:var(--muted)">Australia</span></div>
-          <div class="brand-showcase-card reveal reveal-delay-2">Puritan's Pride<br><span style="font-size:10px;font-weight:400;color:var(--muted)">USA</span></div>
-          <div class="brand-showcase-card reveal reveal-delay-3">OstroVit<br><span style="font-size:10px;font-weight:400;color:var(--muted)">Poland</span></div>
-          <div class="brand-showcase-card reveal reveal-delay-3">Nature Made<br><span style="font-size:10px;font-weight:400;color:var(--muted)">USA</span></div>
-          <div class="brand-showcase-card reveal reveal-delay-4">BetterYou<br><span style="font-size:10px;font-weight:400;color:var(--muted)">UK</span></div>
-          <div class="brand-showcase-card reveal reveal-delay-4">Swisse<br><span style="font-size:10px;font-weight:400;color:var(--muted)">Australia</span></div>
-          <div class="brand-showcase-card reveal">NOW Foods<br><span style="font-size:10px;font-weight:400;color:var(--muted)">USA</span></div>
-          <div class="brand-showcase-card reveal">La Roche-Posay<br><span style="font-size:10px;font-weight:400;color:var(--muted)">France</span></div>
-          <div class="brand-showcase-card reveal">Vichy<br><span style="font-size:10px;font-weight:400;color:var(--muted)">France</span></div>
-          <div class="brand-showcase-card reveal">Kiehl's<br><span style="font-size:10px;font-weight:400;color:var(--muted)">USA</span></div>
+        <div class="stats">
+          <div class="reveal"><div class="stat__num">500+</div><div class="stat__lbl">Mã sản phẩm phân phối</div></div>
+          <div class="reveal"><div class="stat__num">17</div><div class="stat__lbl">Thương hiệu đối tác</div></div>
+          <div class="reveal"><div class="stat__num">1000+</div><div class="stat__lbl">Điểm bán lẻ</div></div>
+          <div class="reveal"><div class="stat__num">63</div><div class="stat__lbl">Tỉnh thành phủ sóng</div></div>
         </div>
       </div>
     </section>
 
-    <!-- PARTNERSHIP PROCESS -->
+    <!-- Quy trình -->
     <section class="section">
       <div class="container">
-        <div style="display:grid;grid-template-columns:1fr;gap:48px" id="process">
-          <div>
-            <h2 class="section-title reveal">Partnership <span>Process</span></h2>
-            <p class="reveal reveal-delay-1" style="color:var(--muted);margin-bottom:32px">A streamlined 4-step process from first contact to market launch — typically 4–8 weeks</p>
-            <div class="process-timeline">
-              <div class="timeline-step reveal reveal-delay-1">
-                <div class="timeline-dot">1</div>
-                <div class="timeline-content">
-                  <h4>Initial Contact & NDA</h4>
-                  <p>Submit the partnership inquiry form below. We'll respond within 48 hours with an NDA and initial questions about your brand, product range, and distribution goals.</p>
-                </div>
-              </div>
-              <div class="timeline-step reveal reveal-delay-2">
-                <div class="timeline-dot">2</div>
-                <div class="timeline-content">
-                  <h4>Due Diligence & Market Assessment</h4>
-                  <p>We conduct a market assessment for your brand in Vietnam, including competitive analysis, regulatory requirements, and pricing strategy. We present a preliminary distribution plan with projected volume forecasts.</p>
-                </div>
-              </div>
-              <div class="timeline-step reveal reveal-delay-3">
-                <div class="timeline-dot">3</div>
-                <div class="timeline-content">
-                  <h4>Distribution Agreement</h4>
-                  <p>Negotiate and sign a distribution agreement covering exclusivity territory, minimum order commitments, pricing structure, marketing obligations, and brand guidelines compliance.</p>
-                </div>
-              </div>
-              <div class="timeline-step reveal reveal-delay-4">
-                <div class="timeline-dot">4</div>
-                <div class="timeline-content">
-                  <h4>Product Registration & Market Launch</h4>
-                  <p>HALOVN handles all product registration with Vietnamese authorities. Upon approval, we execute a coordinated multi-channel launch with PR, digital marketing, and retailer onboarding.</p>
-                </div>
-              </div>
+        <div class="section-head reveal">
+          <span class="eyebrow">Quy trình hợp tác</span>
+          <h2>Từ tiếp xúc đầu tiên đến ra mắt thị trường</h2>
+        </div>
+        <div class="grid grid--4">
+          <div class="step reveal">
+            <h3>Tiếp xúc ban đầu</h3>
+            <p>Trao đổi ban đầu để thống nhất tầm nhìn thương hiệu, thị trường mục tiêu và kỳ vọng thương mại.</p>
+          </div>
+          <div class="step reveal">
+            <h3>Thẩm định</h3>
+            <p>Đôi bên cùng đánh giá năng lực, tài chính, tham chiếu và mức độ sẵn sàng pháp lý.</p>
+          </div>
+          <div class="step reveal">
+            <h3>Ký kết</h3>
+            <p>Hợp đồng phân phối, điều khoản độc quyền, KPI và lộ trình ra mắt thị trường.</p>
+          </div>
+          <div class="step reveal">
+            <h3>Ra mắt & mở rộng</h3>
+            <p>Công bố sản phẩm, lô hàng đầu tiên, chiến dịch ra mắt và báo cáo định kỳ.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form đối tác -->
+    <section class="section section--light" id="partner-form">
+      <div class="container" style="max-width:760px">
+        <div class="section-head reveal">
+          <span class="eyebrow">Trở thành đối tác</span>
+          <h2>Chia sẻ thông tin về thương hiệu của bạn</h2>
+          <p>Gửi vài thông tin cơ bản và đội ngũ hợp tác của HALOVN sẽ phản hồi trong vòng 2 ngày làm việc.</p>
+        </div>
+        <form class="form reveal" data-form>
+          <div class="form__success">✓ Cảm ơn bạn! Đội ngũ hợp tác của HALOVN sẽ phản hồi trong vòng 2 ngày làm việc.</div>
+          <div class="form__row">
+            <div class="field">
+              <label for="p-name">Họ và tên *</label>
+              <input id="p-name" type="text" required />
+            </div>
+            <div class="field">
+              <label for="p-email">Email *</label>
+              <input id="p-email" type="email" required />
             </div>
           </div>
-        </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="p-company">Công ty *</label>
+              <input id="p-company" type="text" required />
+            </div>
+            <div class="field">
+              <label for="p-brand">Thương hiệu</label>
+              <input id="p-brand" type="text" />
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="p-country">Quốc gia</label>
+              <input id="p-country" type="text" />
+            </div>
+            <div class="field">
+              <label for="p-cat">Ngành hàng</label>
+              <select id="p-cat">
+                <option>Thực phẩm bổ sung</option>
+                <option>Chăm sóc da / Làm đẹp</option>
+                <option>Mẹ & Bé</option>
+                <option>Dinh dưỡng thể thao</option>
+                <option>Khác</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="p-msg">Nội dung</label>
+            <textarea id="p-msg" placeholder="Giới thiệu về thương hiệu và mục tiêu của bạn tại thị trường Việt Nam..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg">Gửi yêu cầu hợp tác</button>
+        </form>
       </div>
     </section>
 
-    <!-- CONTACT FORM -->
-    <section class="section" style="background:var(--grey-light)" id="partner-form">
-      <div class="container">
-        <div style="max-width:700px;margin:0 auto">
-          <div class="text-center" style="margin-bottom:32px">
-            <h2 class="section-title reveal">Start a <span>Partnership Conversation</span></h2>
-            <p class="section-sub reveal reveal-delay-1">Fill out the form below — our partnership team will respond within 48 hours</p>
-          </div>
-          <div class="partner-form reveal">
-            <h3>Partnership Inquiry</h3>
-            <p>Please share some details about your brand and distribution needs. All information is kept strictly confidential.</p>
-            <form onsubmit="handleContact(event)">
-              <div class="form-row">
-                <div class="form-group"><label>Your Name *</label><input type="text" placeholder="John Smith" required></div>
-                <div class="form-group"><label>Job Title *</label><input type="text" placeholder="Brand Manager / Regional Director" required></div>
-              </div>
-              <div class="form-row" style="margin-bottom:16px">
-                <div class="form-group"><label>Company / Brand Name *</label><input type="text" placeholder="Your company name" required></div>
-                <div class="form-group"><label>Country *</label><input type="text" placeholder="United States / Germany / Australia..." required></div>
-              </div>
-              <div class="form-group" style="margin-bottom:16px"><label>Business Email *</label><input type="email" placeholder="you@company.com" required></div>
-              <div class="form-group" style="margin-bottom:16px"><label>Phone / WhatsApp</label><input type="tel" placeholder="+1 (555) 000-0000"></div>
-              <div class="form-group" style="margin-bottom:16px"><label>Product Category *</label>
-                <select required>
-                  <option value="">-- Select category --</option>
-                  <option>Health Supplements / Nutraceuticals</option>
-                  <option>Sports Nutrition</option>
-                  <option>Mother & Baby Products</option>
-                  <option>Skincare / Cosmetics</option>
-                  <option>Functional Foods & Beverages</option>
-                  <option>Medical Devices / Health Equipment</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom:16px"><label>Annual Revenue (USD)</label>
-                <select>
-                  <option>Under $1M</option><option>$1M – $10M</option>
-                  <option>$10M – $50M</option><option>$50M – $200M</option><option>Over $200M</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom:24px"><label>Tell Us About Your Brand & Distribution Goals *</label>
-                <textarea placeholder="Please describe your brand, key products, any previous experience in Vietnam or Southeast Asia, and what you're looking for in a distribution partner..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px;font-size:16px">Submit Partnership Inquiry</button>
-              <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:14px">Or contact us directly: <strong><a href="mailto:admin@halo.com.vn" style="color:var(--blue)">admin@halo.com.vn</a></strong> | <strong><a href="tel:+84865565633" style="color:var(--blue)">+84 865 565 633</a></strong></p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section style="padding:64px 0">
-      <div class="container">
-        <div class="cta-partner-band reveal">
-          <h2>Ready to Enter the Vietnamese Market?</h2>
-          <p>Join 16+ international brands that trust HALOVN to represent their products in Vietnam</p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <a href="#partner-form" class="btn" style="background:white;color:var(--blue);font-weight:800;padding:14px 28px;border-radius:10px;text-decoration:none;font-size:15px">Start Partnership</a>
-            <a href="mailto:admin@halo.com.vn" class="btn btn-outline-white" style="font-size:15px;padding:14px 28px">Email Us Directly</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer>
-    <div class="footer-main"><div class="container"><div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-brand-name">Halo<span class="vn">vn</span></div>
-        <div class="footer-tagline">Healthy and Beauty</div>
-        <p>Công ty TNHH HALOVN — Vietnam's leading authorized distributor of international health & beauty brands.</p>
-        <div class="footer-social"><a href="#" class="social-btn">f</a><a href="#" class="social-btn">▶</a><a href="#" class="social-btn">Z</a></div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <img src="assets/images/logo/logo.png" alt="HALOVN" />
+          <p>Công ty TNHH HALOVN — Đơn vị nhập khẩu và phân phối chính hãng thực phẩm chức năng, sản phẩm chăm sóc sức khoẻ và sắc đẹp tại Việt Nam.</p>
+        </div>
+        <div>
+          <h4>Liên kết</h4>
+          <ul>
+            <li><a href="about.html">Giới thiệu</a></li>
+            <li><a href="products.html">Sản phẩm</a></li>
+            <li><a href="wholesale.html">Chính sách sỉ</a></li>
+            <li><a href="for-brands.html">Hợp tác thương hiệu</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Hỗ trợ</h4>
+          <ul>
+            <li><a href="contact.html">Liên hệ</a></li>
+            <li><a href="news.html">Tin tức</a></li>
+            <li><a href="#partner-form">Trở thành đối tác</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Liên hệ</h4>
+          <ul class="footer__contact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 58 NV1 Tổng Cục 5, Tân Triều, Thanh Trì, Hà Nội</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg> 0818 685 222</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> admin@halo.com.vn</li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-col"><h4>Company</h4><ul>
-        <li><a href="about.html">About Us</a></li><li><a href="for-brands.html">For Brands</a></li>
-        <li><a href="wholesale.html">Wholesale</a></li><li><a href="news.html">News</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Partnerships</h4><ul>
-        <li><a href="#partner-form">Submit Inquiry</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="#">Regulatory Support</a></li>
-      </ul></div>
-      <div class="footer-col"><h4>Contact</h4>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>282 Nguyen Huy Tuong, Thanh Xuan, Hanoi, Vietnam</span></div>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><a href="tel:+84865565633">+84 865 565 633</a></div>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:admin@halo.com.vn">admin@halo.com.vn</a></div>
+      <div class="footer__bottom">
+        <span>© <span id="year"></span> Công ty TNHH HALOVN. All rights reserved.</span>
+        <span>Healthy and Beauty</span>
       </div>
-    </div></div></div>
-    <div class="footer-bottom"><div class="container">© 2025 Công ty TNHH HALOVN. All rights reserved.</div></div>
+    </div>
   </footer>
-  <button class="scroll-top" id="scrollTop" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
-  <script src="script.js"></script>
+  <script src="assets/js/cart-store.js"></script>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

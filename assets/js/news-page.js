@@ -9,27 +9,37 @@
 
   const news = window.HALOVN_NEWS || [];
   const fmtDate = window.HALOVN_formatDate;
+  /* Localized field getter (falls back to VI) */
+  const fld = (a, f) => (window.HALOVN_articleField ? window.HALOVN_articleField(a, f) : a[f]);
 
-  document.querySelectorAll('[data-news-grid]').forEach(grid => {
-    const limit = parseInt(grid.dataset.limit, 10) || news.length;
-    grid.innerHTML = news.slice(0, limit).map(renderCard).join('');
-  });
+  function renderAll() {
+    document.querySelectorAll('[data-news-grid]').forEach(grid => {
+      const limit = parseInt(grid.dataset.limit, 10) || news.length;
+      grid.innerHTML = news.slice(0, limit).map(renderCard).join('');
+    });
+  }
+  renderAll();
+
+  /* Re-render cards when the user toggles VI/EN */
+  document.addEventListener('halovn:langchange', renderAll);
 
   function renderCard(a) {
     const icon = window.HALOVN_NEWS_ICONS[a.icon] || window.HALOVN_NEWS_ICONS.book;
     const href = `news-detail.html?slug=${esc(a.slug)}`;
+    const title = fld(a, 'title');
+    const excerpt = fld(a, 'excerpt');
     return `
       <article class="news-card reveal">
-        <a href="${href}" class="news-card__img" aria-label="${esc(a.title)}">
+        <a href="${href}" class="news-card__img" aria-label="${esc(title)}">
           ${a.heroImage
-            ? `<img src="${esc(a.heroImage)}" alt="${esc(a.title)}" loading="lazy" data-fallback-icon="${esc(a.icon || 'book')}" />`
+            ? `<img src="${esc(a.heroImage)}" alt="${esc(title)}" loading="lazy" data-fallback-icon="${esc(a.icon || 'book')}" />`
             : icon}
         </a>
         <div class="news-card__body">
           <div class="news-card__date">${fmtDate(a.date)}</div>
-          <h3 class="news-card__title"><a href="${href}">${esc(a.title)}</a></h3>
-          ${a.excerpt ? `<p style="font-size:.9rem; color:var(--c-muted)">${esc(a.excerpt)}</p>` : ''}
-          <a href="${href}" class="news-card__cta">Đọc tiếp →</a>
+          <h3 class="news-card__title"><a href="${href}">${esc(title)}</a></h3>
+          ${excerpt ? `<p style="font-size:.9rem; color:var(--c-muted)">${esc(excerpt)}</p>` : ''}
+          <a href="${href}" class="news-card__cta" data-i18n="news.readMore">Đọc tiếp →</a>
         </div>
       </article>
     `;

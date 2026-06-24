@@ -16,31 +16,38 @@
   const article = window.HALOVN_findArticle(slug);
   if (!article) return renderNotFound(`Không tìm thấy bài viết "${slug}".`);
 
-  // SEO
-  document.title = article.title + ' — HALOVN';
-  const meta = document.querySelector('meta[name="description"]');
-  if (meta) meta.setAttribute('content', article.excerpt);
-
   const fmtDate = window.HALOVN_formatDate;
   const icon = window.HALOVN_NEWS_ICONS[article.icon] || window.HALOVN_NEWS_ICONS.book;
+  /* Localized field getter (falls back to VI) */
+  const fld = (a, f) => (window.HALOVN_articleField ? window.HALOVN_articleField(a, f) : a[f]);
 
   // Lấy 3 bài khác (loại trừ bài hiện tại) làm "Bài viết khác"
   const related = window.HALOVN_NEWS.filter(a => a.slug !== article.slug).slice(0, 3);
 
-  root.innerHTML = `
+  function renderArticle() {
+    const title = fld(article, 'title');
+    const category = fld(article, 'category');
+    const content = fld(article, 'content') || [];
+
+    // SEO
+    document.title = title + ' — HALOVN';
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute('content', fld(article, 'excerpt') || '');
+
+    root.innerHTML = `
     <!-- Breadcrumb -->
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Trang chủ</a>
+      <a href="index.html" data-i18n="nav.home">Trang chủ</a>
       <span class="breadcrumb__sep">/</span>
-      <a href="news.html">Tin tức</a>
+      <a href="news.html" data-i18n="nav.news">Tin tức</a>
       <span class="breadcrumb__sep">/</span>
-      <span class="breadcrumb__current">${esc(article.title)}</span>
+      <span class="breadcrumb__current">${esc(title)}</span>
     </nav>
 
     <article class="news-article">
       <header class="news-article__head">
-        <span class="news-article__cat">${esc(article.category || 'Tin tức')}</span>
-        <h1 class="news-article__title">${esc(article.title)}</h1>
+        <span class="news-article__cat">${esc(category || 'Tin tức')}</span>
+        <h1 class="news-article__title">${esc(title)}</h1>
         <div class="news-article__meta">
           <span>📅 ${fmtDate(article.date)}</span>
           ${article.author ? `<span>· ✍️ ${esc(article.author)}</span>` : ''}
@@ -49,47 +56,65 @@
 
       <div class="news-article__hero">
         ${article.heroImage
-          ? `<img src="${esc(article.heroImage)}" alt="${esc(article.title)}" loading="lazy" data-fallback-icon="${esc(article.icon || 'book')}" />`
+          ? `<img src="${esc(article.heroImage)}" alt="${esc(title)}" loading="lazy" data-fallback-icon="${esc(article.icon || 'book')}" />`
           : `<div class="news-article__hero-fallback">${icon}</div>`
         }
       </div>
 
       <div class="news-article__body">
-        ${article.content.map(p => `<p>${esc(p)}</p>`).join('')}
+        ${content.map(item => {
+          if (typeof item === 'object' && item.type === 'image') {
+            return `<figure class="news-article__figure"><img src="${esc(item.src)}" alt="${esc(item.alt || '')}" loading="lazy" /></figure>`;
+          }
+          if (typeof item === 'object' && item.type === 'heading') {
+            return `<h2 class="news-article__h2">${esc(item.text)}</h2>`;
+          }
+          if (typeof item === 'object' && item.type === 'list') {
+            return `<ul class="news-article__list">${item.items.map(li => `<li>${esc(li)}</li>`).join('')}</ul>`;
+          }
+          return `<p>${esc(item)}</p>`;
+        }).join('')}
       </div>
 
       <footer class="news-article__foot">
         <div class="news-article__share">
-          <a href="news.html" class="btn btn--outline">← Về danh sách tin tức</a>
-          <a href="contact.html" class="btn btn--primary">Liên hệ HALOVN →</a>
+          <a href="news.html" class="btn btn--outline" data-i18n="news.backToList">← Về danh sách tin tức</a>
+          <a href="contact.html" class="btn btn--primary" data-i18n="news.contactCta">Liên hệ HALOVN →</a>
         </div>
       </footer>
     </article>
 
     ${related.length ? `
     <section class="news-related">
-      <h2>Bài viết khác</h2>
+      <h2 data-i18n="news.related">Bài viết khác</h2>
       <div class="grid grid--3">
         ${related.map(renderCard).join('')}
       </div>
     </section>
     ` : ''}
   `;
+  }
+
+  renderArticle();
+  /* Re-render when the user toggles VI/EN */
+  document.addEventListener('halovn:langchange', renderArticle);
 
   function renderCard(a) {
     const aIcon = window.HALOVN_NEWS_ICONS[a.icon] || window.HALOVN_NEWS_ICONS.book;
+    const aTitle = fld(a, 'title');
+    const aExcerpt = fld(a, 'excerpt');
     return `
       <article class="news-card">
         <a href="news-detail.html?slug=${esc(a.slug)}" class="news-card__img">
           ${a.heroImage
-            ? `<img src="${esc(a.heroImage)}" alt="${esc(a.title)}" loading="lazy" data-fallback-icon="${esc(a.icon || 'book')}" />`
+            ? `<img src="${esc(a.heroImage)}" alt="${esc(aTitle)}" loading="lazy" data-fallback-icon="${esc(a.icon || 'book')}" />`
             : aIcon}
         </a>
         <div class="news-card__body">
           <div class="news-card__date">${fmtDate(a.date)}</div>
-          <h3 class="news-card__title"><a href="news-detail.html?slug=${esc(a.slug)}">${esc(a.title)}</a></h3>
-          <p style="font-size:.9rem; color:var(--c-muted)">${esc(a.excerpt)}</p>
-          <a href="news-detail.html?slug=${esc(a.slug)}" class="news-card__cta">Đọc tiếp →</a>
+          <h3 class="news-card__title"><a href="news-detail.html?slug=${esc(a.slug)}">${esc(aTitle)}</a></h3>
+          <p style="font-size:.9rem; color:var(--c-muted)">${esc(aExcerpt)}</p>
+          <a href="news-detail.html?slug=${esc(a.slug)}" class="news-card__cta" data-i18n="news.readMore">Đọc tiếp →</a>
         </div>
       </article>
     `;
@@ -121,7 +146,7 @@
       <section style="padding: 64px 0; text-align:center;">
         <h1 style="color:var(--c-navy)">Không tìm thấy bài viết</h1>
         <p style="color:var(--c-muted); max-width:480px; margin: 12px auto 28px;">${esc(msg)}</p>
-        <a href="news.html" class="btn btn--primary">← Về danh sách tin tức</a>
+        <a href="news.html" class="btn btn--primary" data-i18n="news.backToList">← Về danh sách tin tức</a>
       </section>
     `;
   }
